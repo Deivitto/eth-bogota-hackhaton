@@ -4,6 +4,14 @@
 
 Build some stuff with Cowswap.
 
+## Resources
+
+- [CowSwap Workshop Slides](https://docs.google.com/presentation/d/1ZauQFC80DeqDGTevZHSWOBz5ahAbiT3fdObhqLS888A/edit)
+- [Demo Repo](https://github.com/fleupold/dappcon-2022-smart-orders)
+- [Docs](https://docs.cow.fi/tutorials/how-to-place-erc-1271-smart-contract-orders)
+- [A video](https://www.youtube.com/watch?v=5RHx4AiaUCM)
+- [Another video](https://youtu.be/tRnH5FmY8y8)
+
 ## Bounties to snipe
 
 ### **Cowswap**
