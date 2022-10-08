@@ -7,8 +7,14 @@
 </script>
 
 <svelte:head>
-    <title>Home</title>
-    <meta name="description" content="Svelte demo app" />
+    <title>milky_chain.eth</title>
+    <meta name="description" content="milky_chain.eth demo app" />
+    <!-- this is for the web3modal -->
+    <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
+    <script
+        type="text/javascript"
+        src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="/wallet-sdk-bundle.js"></script>
 </svelte:head>
 
 <section>
