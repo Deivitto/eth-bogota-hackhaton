@@ -1,5 +1,8 @@
-const { ethers } = require("hardhat")
-const fetch = require("node-fetch")
+// const { ethers } = require("hardhat")
+import { ethers } from 'ethers';
+// const fetch = require("node-fetch")
+import { fetch } from 'node-fetch';
+// import fetch, { FormData, File } from 'node-fetch'
 
 // GAT_ORDERS smart contract address
 const GAT_ORDERS = "0x45F228cECF21C234D6d0223c9F24f58d32CD91AE"
@@ -10,8 +13,15 @@ const WETH = "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6"//@audit variable of ad
 const COW = "0x3430d04e42a722c5ae52c5bffbf1f230c2677600"
 
 async function main() {
-
+    console.log(ethers)
     // Get signer
+//     const provider = new ethers.providers.Web3Provider(window.ethereum, "any"); 
+// // Prompt user for account connections 
+// await provider.send("eth_requestAccounts", []); 
+// const signer = provider.getSigner(); 
+// console.log("Account:", await signer.getAddress());
+
+
     const [signer] = await ethers.getSigners()
 
     // Attach to GAT_ORDERS contract and connect it to signer

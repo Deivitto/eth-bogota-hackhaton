@@ -44,7 +44,7 @@
         justify-content: space-between;
     } */
 
-    .corner {
+    /* .corner {
         width: 3em;
         height: 3em;
     }
@@ -125,5 +125,5 @@
 
     a:hover {
         color: var(--color-theme-1);
-    }
+    } */
 </style>

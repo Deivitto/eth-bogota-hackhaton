@@ -4,11 +4,12 @@
 
 <script>
     import { connected, signerAddress, chainId } from "svelte-ethers-store"
-
     import SvgCheck from "$lib/svgCheck.svelte"
+    // import { main } from "$lib/placeOrder"
     import { onConnect, onDisconnect } from "$lib/web3"
     function runScript() {
-        console.log("ASdasd")
+        console.log("Running script")
+        // main()
     }
     async function changeNetwork() {
         const CHAIN_ID = 80001
@@ -124,7 +125,7 @@
                             on:click={runScript}
                             class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
                         >
-                            Swap
+                            Test Script
                         </button>
                         <a
                             href="/swap"
@@ -327,14 +328,13 @@
         margin-bottom: 2rem;
     }
 
-    .logo-image {
+    /* .logo-image {
         border-radius: 35px;
         max-width: 165px;
-        /* margin-left: auto; */
         margin-right: auto;
         transition: ease 0.5s;
         margin-top: -2rem;
-    }
+    } */
 
     .starting-buttons {
         flex-wrap: wrap;
@@ -345,7 +345,7 @@
         margin: 0;
     }
 
-    .button-charming {
+    /* .button-charming {
         height: 3rem;
         border-radius: 8px;
         padding: 0 2rem;
@@ -355,11 +355,11 @@
         color: #fff;
         transition: background 0.8s;
         border: none;
-    }
+    } */
 
-    .button-charming:hover {
+    /* .button-charming:hover {
         background-position: 185% 50%;
-    }
+    } */
 
     .button-first-section {
         min-width: 250px;
@@ -371,7 +371,7 @@
         filter: brightness(0.8);
     }
 
-    @media (min-width: 1468px) {
+    /* @media (min-width: 1468px) {
         .ethereum-gif {
             position: absolute;
             right: 4rem;
@@ -383,18 +383,18 @@
 
     .ethereum-gif {
         display: none;
-    }
+    } */
 
     @media (max-width: 768px) {
         .max-w-md {
             max-width: 100%;
         }
 
-        .custom-button-centered > button {
+        /* .custom-button-centered > button {
             max-width: 90%;
             margin-left: auto;
             margin-right: auto;
-        }
+        } */
 
         .regular-text-smaller,
         .regular-text-title,
@@ -424,14 +424,6 @@
         a {
             min-width: auto;
         }
-
-        .title_milketh {
-            /* font-size: 2rem; */
-        }
-
-        .subtitle_milketh {
-            /* font-size: 1.4rem; */
-        }
     }
 
     @media (max-width: 426px) {
@@ -443,10 +435,10 @@
             font-size: 1.4rem;
         }
 
-        .stroke-current > path {
+        /* .stroke-current > path {
             min-width: 24px;
             min-height: 24px;
-        }
+        } */
 
         .button-first-section {
             min-width: 40%;
