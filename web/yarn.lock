@@ -2045,6 +2045,14 @@
   "resolved" "https://registry.npmjs.org/svelte-proxied-store/-/svelte-proxied-store-1.1.4.tgz"
   "version" "1.1.4"
 
+"svelte-web3@^4.0.0":
+  "integrity" "sha512-PyCxPycc2a6CZhd3T1+SLu3iwntgdPXkMdFhs8rLzbGHwekLXByeq6z4pOLqKH70MMZ3tXY1wICq9Zfb+LAG+Q=="
+  "resolved" "https://registry.npmjs.org/svelte-web3/-/svelte-web3-4.0.0.tgz"
+  "version" "4.0.0"
+  dependencies:
+    "svelte" "^3.0.0"
+    "svelte-proxied-store" "^1.1.4"
+
 "svelte@^3.0.0", "svelte@^3.23.0", "svelte@^3.44.0", "svelte@^3.46.0", "svelte@>=3.19.0":
   "integrity" "sha512-bS4odcsdj5D5jEg6riZuMg5NKelzPtmsCbD9RG+8umU03TeNkdWnP6pqbCm0s8UQNBkqk29w/Bdubn3C+HWSwA=="
   "resolved" "https://registry.npmjs.org/svelte/-/svelte-3.50.1.tgz"
