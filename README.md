@@ -134,3 +134,6 @@ Moonbeam is a smart contract platform for cross-chain-connected applications tha
 
 **THIS TAKES AROUND 30 MINUTES SO DON'T DO IT LAST MINUTES**
 
+## Run the Web
+yarn install
+npm run dev -- --open
