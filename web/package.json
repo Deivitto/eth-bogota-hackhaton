@@ -22,6 +22,7 @@
   "type": "module",
   "dependencies": {
     "ethers": "^5.7.1",
-    "svelte-ethers-store": "^2.5.8"
+    "svelte-ethers-store": "^2.5.8",
+    "web3modal": "^1.9.9"
   }
 }
