@@ -18,7 +18,7 @@ import {SmartCoWOrder} from "./SmartCoWOrder.sol";
 // Order: owner, DCA amount, min frequency
 //
 
-contract SmartCoWOrder2 {
+contract SmartCoWOrders {
     using GPv2Order for *;
     ISuperfluid host;
     using CFAv1Library for CFAv1Library.InitData;
