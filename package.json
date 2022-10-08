@@ -1,0 +1,25 @@
+{
+  "name": "eth-bogota-hackhaton",
+  "version": "1.0.0",
+  "description": "Hackaton for ETH Bogota 2022",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Deivitto/eth-bogota-hackhaton.git"
+  },
+  "author": "Baraa, luksgrin & Deivitto",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Deivitto/eth-bogota-hackhaton/issues"
+  },
+  "homepage": "https://github.com/Deivitto/eth-bogota-hackhaton#readme",
+  "dependencies": {
+    "hardhat": "^2.11.2"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0"
+  }
+}
