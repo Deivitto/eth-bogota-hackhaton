@@ -26,6 +26,7 @@ contract GATOrders is ICoWSwapOnchainOrders {
 
     ICoWSwapSettlement public immutable settlement;
     bytes32 public immutable domainSeparator;
+    mapping(address => address) public addressToContract;
 
     constructor(ICoWSwapSettlement settlement_) {
         settlement = settlement_;
@@ -74,5 +75,6 @@ contract GATOrders is ICoWSwapOnchainOrders {
 
         orderUid = new bytes(GPv2Order.UID_LENGTH);
         orderUid.packOrderUidParams(orderHash, address(instance), data.validTo);
+        addressToContract[msg.sender] = address(instance);
     }
 }
