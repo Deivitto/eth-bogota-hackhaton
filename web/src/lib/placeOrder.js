@@ -6,7 +6,7 @@ const GAT_ORDERS = "0x45F228cECF21C234D6d0223c9F24f58d32CD91AE"
 const ONE_MINUTE = 60
 
 // WETH and COW token contracts
-const WETH = "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6"
+const WETH = "0xb4fbf271143f4fbf7b91a5ded31805e42b2208d6"//@audit variable of address
 const COW = "0x3430d04e42a722c5ae52c5bffbf1f230c2677600"
 
 async function main() {
@@ -22,7 +22,7 @@ async function main() {
     // Attach to WETH contract and connect it to signer
     const weth = (await ethers.getContractAt("IERC20", WETH)).connect(signer)
 
-    // Retriece allowance
+    // Retrieve allowance
 
     const allowance = await weth.allowance(signer.address, orders.address)
 
@@ -42,8 +42,8 @@ async function main() {
 
     // Build order
     const order = {
-        sellToken: weth.address,
-        buyToken: COW,
+        sellToken: WETH,//@audit WETH weth.address variable
+        buyToken: COW, //@audit variable
         receiver: ethers.constants.AddressZero, // Why would you set address 0¿?
         sellAmount: ethers.utils.parseUnits("0.01", 18),
         buyAmount: ethers.utils.parseUnits("10.0", 18),
