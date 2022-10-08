@@ -7,7 +7,9 @@ require("solidity-coverage")
 require("dotenv").config()
 
 const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || ""
-const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
+const GOERLI_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY || ""
+const GOERLI_RPC_URL = process.env.GOERLI_RPC_URL || ""
+const GNOSIS_PRIVATE_KEY = process.env.GOERLI_PRIVATE_KEY || ""
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
 
@@ -22,7 +24,13 @@ module.exports = {
             chainId: 5,
             blockConfirmations: 6,
             url: GOERLI_RPC_URL,
-            accounts: [PRIVATE_KEY],
+            accounts: [GOERLI_PRIVATE_KEY],
+        },
+        gnosis : {
+            chainId: 100,
+            blockConfirmations: 10,
+            url: GNOSIS_RPC_URL,
+            accounts: [GNOSIS_PRIVATE_KEY],
         },
     },
     solidity: "0.8.17",

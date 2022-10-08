@@ -23,12 +23,6 @@ On CoW Swap, EOA users don’t pay gas and never pay for failed transactions bec
 
 An extra $2500 is available if you attach an interesting front-end to your solution.
 
-### **Aztec**
-
-Maybe integrate zk to make anonymous transactions? Only if we do it on mainnet.
-
-Aztec is a privacy-first zkRollup offering up to 100x cost savings over mainnet Ethereum while being fully privacy-preserving. Aztec is bringing two products to ETHBogota: Aztec Connect, the VPN for Ethereum, which allows for privacy to be seamlessly integrated into any L1 protocol; and Noir, the easiest-to-use zk circuit writing language available.
-
 ### **Wallet Connect**
 
 Obviously because it's an easy implementation. It's better to use v2 because it looks good.
@@ -36,12 +30,6 @@ Obviously because it's an easy implementation. It's better to use v2 because it 
 WalletConnect is the web3 communications protocol enabling wallets and apps to securely connect. Our mission is to expand interoperability and realize richer experiences by providing developers with the infrastructure and tools that underpin user interaction in web3. The recently-launched WalletConnect v2.0 takes our interoperability promise one step further with multi-chain support, allowing developers to build and achieve compatibility across blockchains and roll-ups.
 
 Learn more at walletconnect.com/
-
-### **Worldcoin**
-
-Maybe we can snag some $$ from this one. Who knows.
-
-Worldcoin is a Privacy-Preserving Proof-of-Personhood Protocol (PPPoPP).We’re super excited to give you the first opportunity to build on top of the World ID protocol. Wold ID enables Proof-of-Personhood so that any developer can build anonymous sybil resistant apps.
 
 ### **Metamask**
 
@@ -65,29 +53,11 @@ Maybe push message to a wallet whenever an order on cowswap has been settled?
 
 Push Protocol is the communication protocol of web3. Push protocol enables cross-chain notifications and messaging for dapps, wallets, and services tied to wallet addresses in an open, gasless, and platform agnostic fashion. The open communication layer allows any crypto wallet / frontend to tap into the network and get the communication across.
 
-### **APWine**
-
-Maybe add yield derivatives for the cowswap orders?
-
-A yield derivatives layer for decentralized finance. Unlock future yield and receive it in advance. Fix interest rates on your investments or trade yield.Embrace the modularity of the protocol to build novel yield strategies, bots, or interfaces for the APWine community.
-
 ### **Superfluid**
 
 Since we're doing something related to DeFi, including streams could be interesting... Dunno.
 
 Superfluid is the leading asset streaming protocol that enables Web3 native subscriptions, salaries, and rewards for DAOs and crypto-native businesses. Superfluid streams transfer value in a constant flow over time between wallets in a non-custodial and permissionless manner. Superfluid Protocol can be used to describe cash flows and execute them automatically on-chain, over time, and in a non-interactive way. Money streams are programmable, composable, and modular, allowing developers to build custom applications on top of the protocol. No capital is locked up, and all inflows and outflows are netted in real-time at every block without consuming any gas. Ongoing streams can be forwarded as they are received to both wallets and applications, eliminating delays and drastically increasing capital efficiency.
-
-### **ENS**
-
-For sign ins? We should at least look at it.
-
-The Ethereum Name Service (ENS) enables you to have a cross-platform web3 username and profile, to simplify crypto payments for any blockchain, and decentralized websites. ENS supports .ETH names natively, as well as importing DNS names you already own. ENS is integrated in over 300 services, including wallets, dapps, and browsers.
-
-### **TheGraph**
-
-Is there a way we can just integrate subgraphs into this? Don't think so... But you should think about it.
-
-The Graph is an indexing protocol for organising and efficiently accessing data from blockchains and storage networks. The Graph has been running a hosted service since January 2019 with over 2,300 subgraphs deployed for Web3 and DeFi applications built on Ethereum and IPFS, like Synthetix, Uniswap, Aave, Balancer, Gnosis, Aragon, and more.
 
 ### **Autonomy**
 
@@ -119,12 +89,6 @@ Since we are testing on Gnosis...
 
 The Gnosis Chain is a stable payments EVM (Ethereum Virtual Machine) blockchain designed for fast and inexpensive transactions. The chain uses a unique dual-token model; xDai is a stable token used for transactions, payments, and fees, and Proof of Stake protection will be provided by GNO with the consensus-layer Gnosis Beacon Chain.
 
-### **Moonbeam**
-
-David said he had an idea for moonbeam.
-
-Moonbeam is a smart contract platform for cross-chain-connected applications that unite assets and functionality from Polkadot, Ethereum, Cosmos, Avalanche, and more. Learn more at https://moonbeam.network/
-
 ## Judging.
 
 - 4 minutes to demo (also record a video of it).
@@ -135,5 +99,7 @@ Moonbeam is a smart contract platform for cross-chain-connected applications tha
 **THIS TAKES AROUND 30 MINUTES SO DON'T DO IT LAST MINUTES**
 
 ## Run the Web
+```bash
 yarn install
 npm run dev -- --open
+```

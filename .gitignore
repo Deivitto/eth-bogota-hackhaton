@@ -16,6 +16,8 @@ coverage
 coverage.json
 typechain
 typechain-types
+*.lock
+*.log
 
 #Hardhat files
 cache
