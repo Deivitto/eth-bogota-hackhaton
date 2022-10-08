@@ -1,5 +1,8 @@
 import { ethers } from 'ethers';
-import { defaultEvmStores } from 'svelte-ethers-store';
+// import { defaultEvmStores } from 'svelte-ethers-store';
+import { defaultEvmStores } from 'svelte-web3'
+// import Web3Modal from "web3modal"
+// import Web3Modal from './Web3Modal.svelte'
 
 import abi from './abi/ourContract.json';
 
@@ -7,9 +10,40 @@ import abi from './abi/ourContract.json';
 let web3Modal
 
 // Chosen wallet provider given by the dialog window
-let provider;
-const contractName = 'ourContractName'
-const contractAddress = '0xCEfa58184aa1C45Baa98B02687451B412F2Acaa6'
+// let provider;
+
+
+const providerOptions = {
+    /* See Provider Options Section */
+}
+
+// let web3Modal = new Web3Modal({
+//     network: "mainnet", // optional
+//     cacheProvider: true, // optional
+//     providerOptions, // required
+// })
+
+// const instance = await web3Modal.connect()
+
+// let provider = new ethers.providers.Web3Provider(instance)
+// const signer = provider.getSigner()
+
+// export async function onConnect() {
+
+
+//     try {
+//       const provider = await web3Modal.connect();
+//       const library = new ethers.providers.Web3Provider(provider);
+//       const accounts = await library.listAccounts();
+//       const network = await library.getNetwork();
+//       setProvider(provider);
+//       setLibrary(library);
+//       if (accounts) setAccount(accounts[0]);
+//       setChainId(network.chainId);
+//     } catch (error) {
+//       setError(error);
+//     }
+// }
 
 
 
@@ -53,7 +87,7 @@ export async function init() {
 }
 
 export function loadContracts() {
-  defaultEvmStores.attachContract(contractName, contractAddress, JSON.stringify(abi));
+  defaultEvmStores.attachContract('ourContract', 'addressOfOurContract', JSON.stringify(abi));
 }
 
 
@@ -64,6 +98,9 @@ export async function onConnect() {
 
   console.log("Opening a dialog", web3Modal);
   try {
+    // const web3Modal = new Web3Modal(<providerOptions>)
+    const provider = await web3Modal.connect()
+    defaultEvmStores.setProvider(provider)
     provider = await web3Modal.connect();
     defaultEvmStores.setProvider(provider);
   } catch(e) {
@@ -87,7 +124,7 @@ export async function onDisconnect() {
     // If the cached provider is not cleared,
     // WalletConnect will default to the existing session
     // and does not allow to re-scan the QR code with a new wallet.
-    // Depending on your use case you may want or want not his behavir.
+    // Depending on your use case you may want or want not his behavior.
   }
   await web3Modal.clearCachedProvider();
   defaultEvmStores.disconnect();
