@@ -1,6 +1,5 @@
 <script>
     import Index from "./index.svelte"
-    import Swap from "./swap/+page.svelte"
 </script>
 
 <svelte:head>
@@ -16,12 +15,7 @@
 </svelte:head>
 
 <section>
-    <!-- <Swap /> -->
     <Index />
-    <!-- <div
-        id="background-radial-gradient"
-        style="width: 100vw; height: 100vh; transform: unset; background: radial-gradient(150.6% 98.22% at 48.06% 0%, rgba(130, 71, 229, 0.6) 0%, rgba(200, 168, 255, 0) 100%), rgb(31, 33, 40); background-blend-mode: overlay, normal;"
-    /> -->
 </section>
 
 <style>

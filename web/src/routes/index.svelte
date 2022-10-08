@@ -5,6 +5,8 @@
 <script>
     import { connected, signerAddress, chainId } from "svelte-ethers-store"
     import SvgCheck from "$lib/svgCheck.svelte"
+    import Background from "./Background.svelte"
+
     // import { main } from "$lib/placeOrder"
     import { onConnect, onDisconnect, connectWallet } from "$lib/web3"
     function runScript() {
@@ -165,6 +167,7 @@
                 /> -->
             </div>
         </div>
+        <!-- <Background /> -->
         <!-- <svg
             class="fill-secondary col-start-1 row-start-1 h-auto w-full"
             width="1600"
