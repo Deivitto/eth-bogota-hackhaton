@@ -7,7 +7,9 @@
 
     import SvgCheck from "$lib/svgCheck.svelte"
     import { onConnect, onDisconnect } from "$lib/web3"
-
+    function runScript() {
+        console.log("ASdasd")
+    }
     async function changeNetwork() {
         const CHAIN_ID = 80001
         const HEXCHAIN_ID = "0x" + CHAIN_ID.toString(16)
@@ -118,13 +120,25 @@
                         >
                             Connect
                         </button>
+                        <button
+                            on:click={runScript}
+                            class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
+                        >
+                            Swap
+                        </button>
+                        <a
+                            href="/swap"
+                            class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
+                        >
+                            Swap
+                        </a>
                         <!-- <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a> -->
                     {:else}
                         <a
-                            href="/aggregator-swap"
+                            href="/swap"
                             class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
                         >
-                            Agreggator
+                            Swap
                         </a>
                         <a href="/faq" class="btn button-first-section lg:btn-lg normal-case">FAQ</a
                         >
@@ -144,7 +158,7 @@
                 /> -->
             </div>
         </div>
-        <svg
+        <!-- <svg
             class="fill-secondary col-start-1 row-start-1 h-auto w-full"
             width="1600"
             height="595"
@@ -155,7 +169,7 @@
             <path
                 d="M0 338L53.3 349.2C106.7 360.3 213.3 382.7 320 393.8C426.7 405 533.3 405 640 359.3C746.7 313.7 853.3 222.3 960 189.2C1066.7 156 1173.3 181 1280 159.2C1386.7 137.3 1493.3 68.7 1546.7 34.3L1600 0V595H1546.7C1493.3 595 1386.7 595 1280 595C1173.3 595 1066.7 595 960 595C853.3 595 746.7 595 640 595C533.3 595 426.7 595 320 595C213.3 595 106.7 595 53.3 595H0V338Z"
             />
-        </svg>
+        </svg> -->
     </div>
 
     <!-- {$signerAddress} -->
@@ -176,7 +190,7 @@
                         <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
                             Users can both <b>create a CoW transaction</b> or
                             <b>browse CoW transactions</b>
-                            available for sponsoring. To get sponsored, follow these steps:
+                            For using CoW transactions follow these steps:
                             <ul class="steps steps-vertical">
                                 <li class="step"><b>Create your transaction</b></li>
                                 <li class="step">LOREM IPSUM</li>

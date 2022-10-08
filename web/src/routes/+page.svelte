@@ -15,6 +15,7 @@
         type="text/javascript"
         src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
     <script type="text/javascript" src="/wallet-sdk-bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
 </svelte:head>
 
 <section>
