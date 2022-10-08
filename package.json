@@ -34,5 +34,9 @@
         "prettier-plugin-solidity": "^1.0.0-beta.19",
         "solhint": "^3.3.7",
         "solidity-coverage": "^0.7.21"
+    },
+    "dependencies": {
+        "@coinbase/wallet-sdk": "^3.5.3",
+        "@walletconnect/web3-provider": "^1.8.0"
     }
 }
