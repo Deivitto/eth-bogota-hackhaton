@@ -12,7 +12,7 @@ let web3Modal
 // Chosen wallet provider given by the dialog window
 let provider
 const contractName = "ourContractName"
-const contractAddress = "0xCEfa58184aa1C45Baa98B02687451B412F2Acaa6"
+const contractAddress = "0xceBD682De5DACb732F9b1A2468C6aC0E12Ee8f5e"
 
 /**
  * Setup the orchestra
