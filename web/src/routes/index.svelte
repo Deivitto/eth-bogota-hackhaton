@@ -5,7 +5,7 @@
 <script>
     import { connected, signerAddress, chainId } from "svelte-ethers-store"
     import SvgCheck from "$lib/svgCheck.svelte"
-    import Wallet from "./Wallet.svelte"
+    import Wallet from "$lib/WalletAddress.svelte"
 
     // import { main } from "$lib/placeOrder"
     import { onConnect, onDisconnect, connectWallet } from "$lib/web3"
@@ -13,8 +13,8 @@
         console.log("Running script")
         // main()
     }
-    // $: start_string = signerAddress.slice(0, 4)
-    // $: end_string = signerAddress.slice(-4)
+    // $: start_string = signerAddress != null && connected ? signerAddress.slice(0, 4) : ""
+    // $: end_string = signerAddress != null && connected ? signerAddress.slice(-4) : ""
     // $: address = "" + start_string + end_string
     // $: backgroundImage = backgroundImages[randomIndex];
 
@@ -68,18 +68,15 @@
                         <div class="floating-button-container btn btn-tertiar ">
                             <!-- content -->
                             {#if $chainId == 80001}
-                                {address}
-                                <Wallet
-                                    foo={onDisconnect}
-                                    address="{$signerAddress.slice(0, 4)}...{$signerAddress.slice(
-                                        -4
-                                    )}"
-                                />
+                                <!-- {start_string}{end_string} -->
+                                <div on:click={onDisconnect}>
+                                    <Wallet />
+                                </div>
 
-                                <button class="floating-button-wallet" on:click={onDisconnect}>
-                                    {$signerAddress.slice(0, 4)}...{$signerAddress.slice(-4)}
+                                <!-- <button class="floating-button-wallet" on:click={onDisconnect}>
+                                    asdasdasdas
                                     <span class="floating-button-address" />
-                                </button>
+                                </button> -->
                             {:else}
                                 <button class="floating-button-wallet" on:click={changeNetwork}>
                                     WRONG NETWORK!
@@ -918,5 +915,10 @@
 
     h2 {
         color: #fff;
+    }
+
+    #how {
+        margin-top: 4rem !important;
+        margin-bottom: 4rem !important;
     }
 </style>

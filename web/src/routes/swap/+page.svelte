@@ -1,9 +1,58 @@
+<script context="module">
+    export const prerender = true
+</script>
+
 <script>
-    $: ping = 23123927
-    $: chain = "Arbitrum"
-    $: address = "0x000test"
-    $: token1 = "ETH"
-    $: balance = 0
+    import { connected, signerAddress, chainId } from "svelte-ethers-store"
+    import Wallet from "$lib/WalletAddress.svelte"
+    import SvgLogo from "$lib/svgLogo.svelte"
+    import { onConnect, onDisconnect, connectWallet } from "$lib/web3"
+
+    var ping = 23123927
+    var chain = "Arbitrum"
+    var address = "0x000test"
+    var token1 = "ETH"
+    var balance = 0
+    // $: ping = 23123927
+    // $: chain = "Arbitrum"
+    // $: address = "0x000test"
+    // $: token1 = "ETH"
+    // $: balance = 0
+
+    async function changeNetwork() {
+        const CHAIN_ID = 80001
+        const HEXCHAIN_ID = "0x" + CHAIN_ID.toString(16)
+        try {
+            await window.ethereum.request({
+                method: "wallet_addEthereumChain",
+                params: [
+                    {
+                        chainId: HEXCHAIN_ID,
+                        chainName: "Mumbai testnet",
+                        nativeCurrency: {
+                            name: "Matic",
+                            symbol: "MATIC",
+                            decimals: 18,
+                        },
+                        rpcUrls: [
+                            "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                            // "https://rpc-mumbai.matic.today/",
+                            // "https://matic-mumbai.chainstacklabs.com",
+                            // "https://rpc-mumbai.maticvigil.com/",
+                            // "https://matic-testnet-archive-rpc.bwarelabs.com/"
+                        ],
+                        blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
+                    },
+                ],
+            })
+            setTimeout(() => {
+                document.location.reload()
+            }, 10)
+        } catch (e) {
+            console.log(e)
+            alert("Please manually change your network to Mumbai testnet")
+        }
+    }
 </script>
 
 <section>
@@ -13,6 +62,15 @@
                 <div class="sc-pradxg-0 cDPxHR">
                     <a href="." class="sc-pradxg-8 gJaIbL"
                         ><div class="sc-pradxg-9 hzptBO">
+                            <!-- <div class="logo-container ">
+                                <a href="/"
+                                    ><img
+                                        class="logo-image"
+                                        src="./home_logo.png"
+                                        alt="home_logo.eth"
+                                    /></a
+                                >
+                            </div> -->
                             <!-- <svg
                             width="24px"
                             height="100%"
@@ -23,6 +81,7 @@
                             > @audit svg with logo
                         
                         -->
+                            <SvgLogo />
                         </div></a
                     >
                     <div class="sc-bczRLJ sc-nrd8cx-0 sc-pradxg-3 hJYFVB gBBPoP gkNDVh">
@@ -31,7 +90,23 @@
                             class="sc-pradxg-10 gfRsre active"
                             href="#/swap"
                             aria-current="page">Swap</a
-                        ><a
+                        >
+                        {#if !$connected}
+                            <a
+                                data-cy="pool-nav-link"
+                                id="pool-nav-link"
+                                class="sc-pradxg-10 gfRsre"
+                                href="#/pool">Pool</a
+                            >
+                            <button
+                                on:click={onConnect}
+                                class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
+                            >
+                                Connect
+                            </button>
+                        {/if}
+
+                        <!-- <a
                             data-cy="pool-nav-link"
                             id="pool-nav-link"
                             class="sc-pradxg-10 gfRsre"
@@ -42,7 +117,7 @@
                             href="https://info.uniswap.org/#/arbitrum"
                             id="charts-nav-link"
                             class="sc-1cchcrx-10 dVAOBx sc-pradxg-11 kskfLb">Charts<sup>↗</sup></a
-                        >
+                        > -->
                     </div>
                     <div class="sc-pradxg-1 byWPhu">
                         <div class="sc-pradxg-2 laabeG">
@@ -53,8 +128,9 @@
                                         class="sc-w04zhs-9 sc-w04zhs-14 dxNFXs ekjeVf"
                                     />
                                     <div class="sc-w04zhs-10 sc-w04zhs-11 hytLrO hivUOx">
-                                        {chain} TODO: CHAIN //@audit also the upper image link
+                                        {chain}
                                     </div>
+                                    <!--TODO: CHAIN //@audit also the upper image link -->
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         width="24"
@@ -71,7 +147,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="sc-pradxg-2 laabeG">
+                        <!-- <div class="sc-pradxg-2 laabeG">
                             <div class="sc-pradxg-4 eKAXzW">
                                 <div
                                     class="sc-pradxg-7 bYIEGZ css-z9m35u"
@@ -83,7 +159,7 @@
                                     ><button
                                         data-testid="web3-status-connected"
                                         class="sc-bczRLJ lfsInV sc-fwrjc2-0 sc-fwrjc2-4 sc-m6ivbz-0 sc-m6ivbz-4 ffWXsK hYTqPD ihvkLg jnTWTk"
-                                        ><p class="sc-m6ivbz-5 ldiIWn">{address}</p>
+                                        ><p class="sc-m6ivbz-5 ldiIWn">asdas{address}</p>
                                         <div size="16" class="sc-16lz3aa-0 hVuOEJ">
                                             <div class="sc-z4caw7-0 fyqfbY">
                                                 <span
@@ -121,7 +197,30 @@
                                     ></span
                                 >
                             </div>
-                        </div>
+                        </div> -->
+                        <!-- Wallet block -->
+                        {#if $connected}
+                            <div class="floating-button-container btn btn-tertiar ">
+                                <!-- content -->
+                                {#if $chainId == 80001}
+                                    <!-- {start_string}{end_string} -->
+                                    <div on:click={onDisconnect}>
+                                        <Wallet />
+                                    </div>
+
+                                    <!-- <button class="floating-button-wallet" on:click={onDisconnect}>
+                                asdasdasdas
+                                <span class="floating-button-address" />
+                            </button> -->
+                                {:else}
+                                    <button class="floating-button-wallet" on:click={changeNetwork}>
+                                        WRONG NETWORK!
+                                        <span class="floating-button-address" />
+                                    </button>
+                                {/if}
+                            </div>
+                        {/if}
+                        <!-- end wallet block -->
                         <div class="sc-pradxg-2 laabeG">
                             <div class="sc-12ipqmu-3 YWqOk">
                                 <button aria-label="Menú" class="sc-12ipqmu-1 iveUAE"
@@ -407,10 +506,10 @@
                                 href="https://bridge.arbitrum.io/"
                                 class="sc-1cchcrx-10 dVAOBx sc-17mb1wp-6 dxWPUJ"
                                 ><div color="#0490ed" class="sc-17mb1wp-2 gYQqeL">
-                                    <img
+                                    <!-- <img
                                         src="./static/media/{chain}_logo.ec8e5080.svg"
                                         class="sc-17mb1wp-0 jarGGn"
-                                    />
+                                    /> -->
                                     <div
                                         class="sc-bczRLJ sc-nrd8cx-0 sc-nrd8cx-3 hJYFVB gBBPoP kHFzEX"
                                     >
@@ -2253,5 +2352,31 @@
         src: url(https://app.uniswap.org/static/media/Inter-BlackItalic.a1ea21b0.woff2)
                 format("woff2"),
             url(https://app.uniswap.org/static/media/Inter-BlackItalic.70d2cf35.woff) format("woff");
+    }
+
+    .logo-container {
+        position: relative;
+        top: 1rem;
+        cursor: pointer;
+        z-index: 9999;
+        /* left: 1rem; */
+    }
+
+    @media (max-width: 1000px) {
+        .card {
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .logo-container {
+            margin-right: auto;
+            margin-left: auto;
+            justify-content: center;
+            text-align: center;
+            display: flex;
+            left: initial;
+        }
     }
 </style>
