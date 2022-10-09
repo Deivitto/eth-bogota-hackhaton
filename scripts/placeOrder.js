@@ -7,7 +7,11 @@ const ONE_MINUTE = 60
 
 // WETH and COW token contracts
 const XDAI = "0xe91D153E0b41518A2Ce8Dd3D7944Fa863463a97d"
-const COW = "0x3430d04e42a722c5ae52c5bffbf1f230c2677600"
+const COW = "0x177127622c4A00F3d409B75571e12cB3c8973d3c"
+
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms))
+}
 
 async function main() {
     // Get signer
@@ -38,10 +42,10 @@ async function main() {
         buyToken: COW,
         receiver: ethers.constants.AddressZero, // 0x0 because receiver is msg.sender
         sellAmount: ethers.utils.parseUnits("0.01", 18),
-        buyAmount: ethers.utils.parseUnits("0.113", 18),
-        validFrom: now + 2 * ONE_MINUTE, // Set timeout for trade (this is custom for GAT_ORDERS)
+        buyAmount: ethers.utils.parseUnits("0.1", 18),
+        validFrom: now + 0.1 * ONE_MINUTE, // Set timeout for trade (this is custom for GAT_ORDERS)
         validTo: now + 20 * ONE_MINUTE,
-        feeAmount: ethers.utils.parseUnits("0.0005"), // Set fee
+        feeAmount: ethers.utils.parseUnits("0.005"), // Set fee
         meta: "0x",
     }
     // Set salt
@@ -74,8 +78,10 @@ async function main() {
         signature: onchain.signature.data,
     }
 
+    console.log(onchain.signature.data)
+    await sleep(10000)
     console.log("Sending order to API")
-    const response = await fetch(`https://api.cow.fi/xdai/api/v1/orders`, {
+    const response = await fetch(`https://barn.api.cow.fi/xdai/api/v1/orders`, {
         method: "POST",
         headers: {
             "content-type": "application/json",
@@ -83,6 +89,7 @@ async function main() {
         body: JSON.stringify(offchain),
     })
     const orderUid = await response.json()
+    console.log(orderUid)
 
     console.log(`See order here https://explorer.cow.fi/gc/tx/${orderUid}`)
 

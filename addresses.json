@@ -3,7 +3,13 @@
         "host": "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9",
         "cfav1": "0xEd6BcbF6907D4feEEe8a8875543249bEa9D308E8",
         "settlement": "0x9008D19f58AAbD9eD0D60971565AA8510560ab41",
-        "ethx": "0x5943F705aBb6834Cad767e6E4bB258Bc48D9C947"
+        "ethx": "0x5943F705aBb6834Cad767e6E4bB258Bc48D9C947",
+        "weth": "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
+        "link": "0x0405991c15f8a93401ceedb3326c8d91f5708fb4",
+        "usdc": "0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C",
+        "fusdc": "0xc94dd466416A7dFE166aB2cF916D3875C049EBB7",
+        "fusdcx": "0x8aE68021f6170E5a766bE613cEA0d75236ECCa9a",
+        "idav1": "0xfDdcdac21D64B639546f3Ce2868C7EF06036990c"
     },
     "gnosis": {
         "host": "0x2dFe937cD98Ab92e59cF3139138f18c823a4efE7",
@@ -12,5 +18,13 @@
         "daix": "0x59988e47A3503AaFaA0368b9deF095c818Fdca01",
         "usdc": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
         "usdcx": "0x1234756ccf0660E866305289267211823Ae86eEc"
+    },
+    "polygon": {
+        "host": "0x3E14dC1b13c488a8d5D310918780c983bD5982E7",
+        "cfav1": "0x6EeE6060f715257b970700bc2656De21dEdF074C",
+        "settlement": "0x9008D19f58AAbD9eD0D60971565AA8510560ab41",
+        "daix": "0x1305F6B6Df9Dc47159D12Eb7aC2804d4A33173c2",
+        "usdc": "0x2791bca1f2de4661ed88a30c99a7a9449aa84174",
+        "usdcx": "0xCAa7349CEA390F89641fe306D93591f87595dc1F"
     }
 }

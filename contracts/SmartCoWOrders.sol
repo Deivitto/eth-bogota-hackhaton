@@ -7,14 +7,13 @@ import {ISuperfluidToken} from "@superfluid-finance/ethereum-contracts/contracts
 import {IConstantFlowAgreementV1} from "@superfluid-finance/ethereum-contracts/contracts/interfaces/agreements/IConstantFlowAgreementV1.sol";
 import {SuperAppBase} from "@superfluid-finance/ethereum-contracts/contracts/apps/SuperAppBase.sol";
 import {CFAv1Library} from "@superfluid-finance/ethereum-contracts/contracts/apps/CFAv1Library.sol";
-import {IDAv1Library} from "@superfluid-finance/ethereum-contracts/contracts/apps/IDAv1Library.sol";
 
 import {ICoWSwapSettlement} from "./interfaces/ICoWSwapSettlement.sol";
 import {IERC20} from "@openzeppelin/contracts/interfaces/IERC20.sol";
 import {GPv2Order} from "./vendored/GPv2Order.sol";
 import {SmartCoWOrder} from "./SmartCoWOrder.sol";
 
-contract SmartCoWOrders {
+contract SmartCoWOrders is SuperAppBase {
     using GPv2Order for *;
     using CFAv1Library for CFAv1Library.InitData;
     CFAv1Library.InitData public cfaV1;
@@ -37,6 +36,13 @@ contract SmartCoWOrders {
                 )
             )
         );
+        uint256 configWord = SuperAppDefinitions.APP_LEVEL_FINAL |
+            SuperAppDefinitions.BEFORE_AGREEMENT_CREATED_NOOP |
+            SuperAppDefinitions.BEFORE_AGREEMENT_UPDATED_NOOP |
+            SuperAppDefinitions.BEFORE_AGREEMENT_TERMINATED_NOOP;
+        // can be an empty string in dev or testnet deployments
+
+        host.registerApp(configWord);
     }
 
     function place(
@@ -51,4 +57,52 @@ contract SmartCoWOrders {
         cfaV1.createFlowByOperator(msg.sender, address(instance), superToken, flowRate);
         addressToContract[msg.sender] = address(instance);
     }
+
+    //     /**************************************************************************
+    //      * SuperApp callbacks
+    //      *************************************************************************/
+
+    //     function afterAgreementCreated(
+    //         ISuperToken _superToken,
+    //         address _agreementClass,
+    //         bytes32, // _agreementId,
+    //         bytes calldata _agreementData, /*_agreementData*/
+    //         bytes calldata, // _cbdata,
+    //         bytes calldata _ctx
+    //     ) external override returns (bytes memory newCtx) {}
+
+    //     function beforeAgreementUpdated(
+    //         ISuperToken _superToken,
+    //         address _agreementClass,
+    //         bytes32, /*agreementId*/
+    //         bytes calldata _agreementData, /*agreementData*/
+    //         bytes calldata /*ctx*/
+    //     ) external view virtual override returns (bytes memory cbdata) {}
+
+    //     function afterAgreementUpdated(
+    //         ISuperToken _superToken,
+    //         address _agreementClass,
+    //         bytes32, //_agreementId,
+    //         bytes calldata _agreementData, //agreementData,
+    //         bytes calldata _cbdata,
+    //         bytes calldata _ctx
+    //     ) external override returns (bytes memory newCtx) {}
+
+    //     function beforeAgreementTerminated(
+    //         ISuperToken, /*superToken*/
+    //         address, /*agreementClass*/
+    //         bytes32, /*agreementId*/
+    //         bytes calldata _agreementData, /*agreementData*/
+    //         bytes calldata /*ctx*/
+    //     ) external view virtual override returns (bytes memory cbdata) {}
+
+    //     function afterAgreementTerminated(
+    //         ISuperToken _superToken,
+    //         address _agreementClass,
+    //         bytes32, //_agreementId,
+    //         bytes calldata _agreementData, /*_agreementData*/
+    //         bytes calldata _cbdata,
+    //         bytes calldata _ctx
+    //     ) external override returns (bytes memory newCtx) {}
+    // }
 }
