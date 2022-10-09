@@ -30,6 +30,12 @@ export const connectWallet = async () => {
             options: {
                 appName: "Web 3 Modal Demo",
                 // infuraId: process.env.INFURA_KEY,
+                rpc: {
+                    80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                    1284: "https://rpc.ankr.com/moonbeam/",
+                    1: "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                    5: "https://eth-goerli-rpc.gateway.pokt.network/",
+                },
             },
         },
         walletconnect: {
@@ -38,7 +44,9 @@ export const connectWallet = async () => {
                 // Mikko's test key - don't copy as your mileage may vary
                 rpc: {
                     80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
-                    // "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                    1284: "https://rpc.ankr.com/moonbeam/",
+                    1: "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                    5: "https://eth-goerli-rpc.gateway.pokt.network/",
                 },
             },
         },
@@ -88,6 +96,9 @@ export async function init() {
                             // Mikko's test key - don't copy as your mileage may vary
                             rpc: {
                                 80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                                1284: "https://rpc.ankr.com/moonbeam/",
+                                1: "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                                5: "https://eth-goerli-rpc.gateway.pokt.network/",
                             },
                         },
                     },
@@ -99,6 +110,9 @@ export async function init() {
                         },
                         rpc: {
                             80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                            1284: "https://rpc.ankr.com/moonbeam/",
+                            1: "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                            5: "https://eth-goerli-rpc.gateway.pokt.network/",
                         },
                     },
                 }

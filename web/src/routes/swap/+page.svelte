@@ -7,6 +7,7 @@
     import Wallet from "$lib/WalletAddress.svelte"
     import SvgLogo from "$lib/svgLogo.svelte"
     import { onConnect, onDisconnect, connectWallet } from "$lib/web3"
+    import SmartCowLink from "$lib/smartcow.png"
 
     var ping = 23123927
     var chain = "Arbitrum"
@@ -36,11 +37,9 @@
                         },
                         rpcUrls: [
                             "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
-                            // "https://rpc-mumbai.matic.today/",
-                            // "https://matic-mumbai.chainstacklabs.com",
-                            // "https://rpc-mumbai.maticvigil.com/",
-                            // "https://matic-testnet-archive-rpc.bwarelabs.com/"
+                            "https://rpc.ankr.com/moonbeam/",
                             "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                            "https://eth-goerli-rpc.gateway.pokt.network/",
                         ],
                         blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
                     },
@@ -63,7 +62,8 @@
                 <div class="sc-pradxg-0 cDPxHR">
                     <a href="." class="sc-pradxg-8 gJaIbL"
                         ><div class="sc-pradxg-9 hzptBO">
-                            <SvgLogo />
+                            <!-- <SvgLogo /> -->
+                            <img style="max-width:32px" src={SmartCowLink} alt="Smart Cow Logo" />
                         </div></a
                     >
                     <div class="sc-bczRLJ sc-nrd8cx-0 sc-pradxg-3 hJYFVB gBBPoP gkNDVh">
@@ -168,8 +168,7 @@
             <div class="sc-1dv6j2d-1 cppDvG">
                 <div class="sc-1kykgp9-2 sc-fo3pji-2 hinUJE leVPqs" />
                 <div height="0" class="sc-fo3pji-0 bqnskO"><div class="sc-fo3pji-1 gLdiTM" /></div>
-                <div class="sc-bczRLJ sc-nrd8cx-0 sc-nrd8cx-4 hJYFVB gBBPoP leSroW">
-                </div>
+                <div class="sc-bczRLJ sc-nrd8cx-0 sc-nrd8cx-4 hJYFVB gBBPoP leSroW" />
                 <div
                     class="_1klryar0 rgw6ez3lg rgw6ez3lb rgw6ez14g rgw6ez15b rgw6ez1ay rgw6ez1bt rgw6ez43g rgw6ez2z4 rgw6ez34h rgw6ez39y rgw6ez34n rgw6ez3a4 rgw6ez3fh rgw6ez3z4"
                 >
