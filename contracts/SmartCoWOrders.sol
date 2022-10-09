@@ -26,7 +26,7 @@ contract SmartCoWOrders is SuperAppBase {
     address public immutable registrar;
     AutomationRegistryInterface public immutable registry;
 
-    mapping(address => address) public addressToContract;
+    mapping(address => mapping(address => SmartCoWOrder)) public ownerToTokenToContract;
 
     constructor(
         ISuperfluid host_,
@@ -58,6 +58,20 @@ contract SmartCoWOrders is SuperAppBase {
         // can be an empty string in dev or testnet deployments
 
         host.registerApp(configWord);
+    }
+
+    function fundUpkeep(
+        address owner,
+        address token,
+        uint96 linkAmount
+    ) external {
+        SmartCoWOrder instance = ownerToTokenToContract[owner][token];
+        require(address(instance) != address(0), "no instance created");
+        require(
+            link.transferFrom(msg.sender, address(instance), uint256(linkAmount)),
+            "link transfer failed"
+        );
+        instance.fundUpkeep(0);
     }
 
     function place(
@@ -96,6 +110,6 @@ contract SmartCoWOrders is SuperAppBase {
 
         /** @dev: Require this contract to be a flowOperator for msg.sender */
         cfaV1.createFlowByOperator(msg.sender, address(instance), superToken, flowRate);
-        addressToContract[msg.sender] = address(instance);
+        ownerToTokenToContract[msg.sender][address(data.sellToken)] = instance;
     }
 }

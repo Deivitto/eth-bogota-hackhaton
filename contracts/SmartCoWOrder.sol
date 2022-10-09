@@ -65,6 +65,7 @@ contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleI
 
     event Downgraded(uint256 amount);
     event OrderUID(bytes orderUID);
+    event UpkeepFunded(uint96 fundAmount);
 
     constructor(
         address owner_,
@@ -84,6 +85,7 @@ contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleI
         registrar = registrar_;
         registry = registry_;
 
+        link.approve(address(registry), type(uint256).max);
         IERC20(data.sellToken).approve(settlement_.vaultRelayer(), type(uint256).max);
         cfaV1 = CFAv1Library.InitData(
             host,
@@ -104,6 +106,15 @@ contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleI
             "Cant change tokens"
         );
         data = data_;
+    }
+
+    function fundUpkeep(uint256 linkAmount) external {
+        if (linkAmount != 0) {
+            require(link.transferFrom(msg.sender, address(this), linkAmount));
+        }
+        uint96 fundAmount = uint96(link.balanceOf(address(this)));
+        registry.addFunds(upkeepID, fundAmount);
+        emit UpkeepFunded(fundAmount);
     }
 
     function performUpkeep(
@@ -168,6 +179,7 @@ contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleI
         IERC20 sellToken = IERC20(data.sellToken);
         sellToken.transfer(owner, sellToken.balanceOf(address(this)));
         superToken.transfer(owner, superToken.balanceOf(address(this)));
+        link.transfer(owner, link.balanceOf(address(this)));
         isOpen = false;
     }
 
@@ -209,7 +221,6 @@ contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleI
                     )
                 )
             );
-            // DEV - Use the upkeepID however you see fit
         } else {
             revert("auto-approve disabled");
         }
