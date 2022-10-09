@@ -1,0 +1,14 @@
+{
+    "goerli": {
+        "host": "0x22ff293e14F1EC3A09B137e9e06084AFd63adDF9",
+        "cfav1": "0xEd6BcbF6907D4feEEe8a8875543249bEa9D308E8",
+        "settlement": "0x9008D19f58AAbD9eD0D60971565AA8510560ab41",
+        "ethx": "0x5943F705aBb6834Cad767e6E4bB258Bc48D9C947"
+    },
+    "gnosis": {
+        "host": "0x2dFe937cD98Ab92e59cF3139138f18c823a4efE7",
+        "cfav1": "0xEbdA4ceF883A7B12c4E669Ebc58927FBa8447C7D",
+        "settlement": "0x9008D19f58AAbD9eD0D60971565AA8510560ab41",
+        "daix": "0x59988e47A3503AaFaA0368b9deF095c818Fdca01"
+    }
+}
