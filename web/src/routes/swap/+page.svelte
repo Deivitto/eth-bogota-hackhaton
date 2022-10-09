@@ -14,6 +14,7 @@
     var address = "0x000test"
     var token1 = "ETH"
     var balance = 0
+    $: dcaEnabled = document.querySelector("#chainlink_input")
     // $: ping = 23123927
     // $: chain = "Arbitrum"
     // $: address = "0x000test"
@@ -399,7 +400,7 @@
                                 class="material-checkbox-container label text-white "
                                 style="    min-width: 30px;"
                             >
-                                <input type="checkbox" name="pledgeForever" />
+                                <input id="chainlink_input" type="checkbox" name="pledgeForever" />
                                 <span class="material-checkbox ml-2 mr-2" />
                             </label>
                             <span class="label-text ml-1 text-white"
