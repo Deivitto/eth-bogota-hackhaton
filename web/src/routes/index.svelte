@@ -219,7 +219,7 @@
                                 <li class="">2 - Add your tokens to buy and sell</li>
                                 <li class="">3 - Write a receiver address (optional)</li>
                                 <li class="">4 - Add a deadline (optional)</li>
-                                <li class="">5 - And sign the transaction</li>
+                                <li class="">5 - Sign the transaction</li>
                             </ol>
                         </div>
                         <p class="mt-4 text-center mx-auto w-full max-w-xs flex-grow sm:max-w-md">

@@ -4,14 +4,14 @@ import { defaultEvmStores } from "svelte-ethers-store"
 // import CoinbaseWalletSDK from "@coinbase/wallet-sdk"
 // import WalletConnect from "@walletconnect/web3-provider"
 
-import abi from "./abi/ourContract.json"
+import abi from "./abi/SmartCoWOrders.json"
 
 // Web3modal instance
 let web3Modal
 
 // Chosen wallet provider given by the dialog window
 let provider
-const contractName = "ourContractName"
+const contractName = "SmartCoWOrders"
 const contractAddress = "0xceBD682De5DACb732F9b1A2468C6aC0E12Ee8f5e"
 
 /**
