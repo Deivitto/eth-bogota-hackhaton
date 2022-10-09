@@ -5,6 +5,7 @@
 <script>
     import { connected, signerAddress, chainId } from "svelte-ethers-store"
     import SvgCheck from "$lib/svgCheck.svelte"
+    import Wallet from "./Wallet.svelte"
 
     // import { main } from "$lib/placeOrder"
     import { onConnect, onDisconnect, connectWallet } from "$lib/web3"
@@ -12,6 +13,11 @@
         console.log("Running script")
         // main()
     }
+    // $: start_string = signerAddress.slice(0, 4)
+    // $: end_string = signerAddress.slice(-4)
+    // $: address = "" + start_string + end_string
+    // $: backgroundImage = backgroundImages[randomIndex];
+
     async function changeNetwork() {
         const CHAIN_ID = 80001
         const HEXCHAIN_ID = "0x" + CHAIN_ID.toString(16)
@@ -59,9 +65,17 @@
             <div class="lg:px-10 lg:pb-12">
                 <h1 class="font-title mb-2 py-4 font-extrabold lg:py-10">
                     {#if $connected}
-                        <div class="floating-button-container btn btn-tertiary ">
+                        <div class="floating-button-container btn btn-tertiar ">
                             <!-- content -->
                             {#if $chainId == 80001}
+                                {address}
+                                <Wallet
+                                    foo={onDisconnect}
+                                    address="{$signerAddress.slice(0, 4)}...{$signerAddress.slice(
+                                        -4
+                                    )}"
+                                />
+
                                 <button class="floating-button-wallet" on:click={onDisconnect}>
                                     {$signerAddress.slice(0, 4)}...{$signerAddress.slice(-4)}
                                     <span class="floating-button-address" />
@@ -213,7 +227,7 @@
                         <div class="mt-4 flex h-16 items-start justify-center">
                             <a
                                 class="btn-what-is-a-transaction inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-3 text-center text-sm
-                       font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-indigo-700"
+                       font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-indigo-700 btn-tertiary btn"
                                 href="#transaction">What is a transaction?</a
                             >
                         </div>
@@ -236,7 +250,7 @@
                 <p class="mx-auto mb-5 w-full regular-text lh-regular">LOREM IPSUM</p>
 
                 <div class="my-20 flex flex-col custom-button-centered">
-                    <a class="btn btn-tertiary   rounded-full" href="/create-sponsor"
+                    <a class="btn btn-primary    rounded-full" href="/swap"
                         >Create your first CoW transaction!</a
                     >
                 </div>
@@ -263,12 +277,12 @@
                     class="my-20 flex flex-col md:flex-row custom-button-centered space-between md:gap-4"
                 >
                     <a
-                        class="btn  btn-primary btn-outline rounded-full w-full md:w-1/2 btn-fix"
+                        class="btn  btn-tertiary btn-outline rounded-full w-full md:w-1/2 btn-fix"
                         href="/mistery-transactions">Mistery button</a
                     >
                     <br />
                     <a
-                        class="btn btn-primary rounded-full w-full md:w-1/2 btn-fix"
+                        class="btn btn-tertiary rounded-full w-full md:w-1/2 btn-fix"
                         href="/browse-transactions"
                     >
                         Browse transactions!</a
@@ -283,8 +297,11 @@
     * {
         --primary: rgb(214, 123, 90) !important;
         --secondary: rgb(22, 56, 97) !important;
+        --tertiary: rgb(123, 90, 214) !important;
         --primary-light: rgba(214, 123, 90, 0.375) !important;
         --primary-hover: rgb(237, 137, 100) !important;
+        --tertiary-light: rgba(123, 90, 214, 0.375) !important;
+        --tertiary-hover: rgb(133, 97, 233) !important;
         --secondary-light: rgba(21, 55, 96, 0.375) !important;
         --secondary-hover: rgb(17, 45, 78) !important;
     }
@@ -481,11 +498,24 @@
         border: 1px solid rgba(255, 255, 255, 0.25);
         margin-left: 1rem;
         margin-right: 1rem;
-        padding: 1.2rem;
+        padding: 3rem 0.5rem;
+    }
+
+    .hero-content {
+        width: 100% !important;
+    }
+
+    .hero {
+        padding: 3rem 0.5rem;
     }
 
     .hero-image-main * {
         color: white !important;
+    }
+
+    .hero-image-main > div > div {
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
 
     .background-gradient {
@@ -646,7 +676,7 @@
         color: hsl(var(--bc) / var(--tw-text-opacity));
         max-width: 100%;
 
-        padding: 3rem;
+        padding: 3rem 0.5rem;
     }
 
     .btn-fix {
@@ -792,6 +822,16 @@
         border-color: var(--secondary-hover) !important;
     }
 
+    .btn-tertiary {
+        background-color: var(--tertiary) !important;
+        border-color: var(--tertiary) !important;
+    }
+
+    .btn-tertiary:hover {
+        background-color: var(--tertiary-hover) !important;
+        border-color: var(--tertiary-hover) !important;
+    }
+
     .btn-custom-arrow {
         position: relative;
         transition: background-color 300ms ease-out;
@@ -858,6 +898,7 @@
         border-radius: 8px;
         border: 1px solid transparent;
         min-height: 3rem;
+        transition: 0.5s ease;
     }
 
     .btn-ghost {
@@ -872,5 +913,10 @@
 
     .btn-outline {
         background-color: transparent !important;
+        border-color: #fff !important;
+    }
+
+    h2 {
+        color: #fff;
     }
 </style>
