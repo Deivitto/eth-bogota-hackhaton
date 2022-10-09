@@ -15,8 +15,14 @@
     var token1 = "ETH"
     var balance = 0
     $: dcaEnabled = document.querySelector("#chainlink_input")
+        ? document.querySelector("#chainlink_input").value
+        : ""
     $: amountInput = document.querySelector("#amount1")
+        ? document.querySelector("#amount1").value
+        : ""
     $: amountOutput = document.querySelector("#amount2")
+        ? document.querySelector("#amount2").value
+        : ""
     // $: ping = 23123927
     // $: chain = "Arbitrum"
     // $: address = "0x000test"
@@ -24,10 +30,11 @@
     // $: balance = 0
 
     async function swap() {
+        console.log(document.querySelector("#amount1"))
         console.log("swap worked", amountInput, amountOutput, dcaEnabled)
-        dcaEnabled = document.querySelector("#chainlink_input")
-        amountInput = document.querySelector("#amount1")
-        amountOutput = document.querySelector("#amount2")
+        dcaEnabled = document.querySelector("#chainlink_input").value
+        amountInput = document.querySelector("#amount1").value
+        amountOutput = document.querySelector("#amount2").value
         console.log("swap worked", amountInput, amountOutput, dcaEnabled)
     }
 
