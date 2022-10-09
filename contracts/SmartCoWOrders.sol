@@ -14,15 +14,11 @@ import {IERC20} from "@openzeppelin/contracts/interfaces/IERC20.sol";
 import {GPv2Order} from "./vendored/GPv2Order.sol";
 import {SmartCoWOrder} from "./SmartCoWOrder.sol";
 
-// Create DCA order
-// Order: owner, DCA amount, min frequency
-//
-
 contract SmartCoWOrders {
     using GPv2Order for *;
-    ISuperfluid host;
     using CFAv1Library for CFAv1Library.InitData;
     CFAv1Library.InitData public cfaV1;
+    ISuperfluid host;
     ICoWSwapSettlement public immutable settlement;
 
     mapping(address => address) public addressToContract;
@@ -46,17 +42,10 @@ contract SmartCoWOrders {
     function place(
         SmartCoWOrder.Data calldata data,
         ISuperToken superToken,
-        int96 flowRate,
-        bytes32 salt
+        int96 flowRate
     ) external {
         require(superToken.getUnderlyingToken() == address(data.sellToken), "!SuperToken");
-        SmartCoWOrder instance = new SmartCoWOrder{salt: salt}(
-            msg.sender,
-            host,
-            superToken,
-            settlement,
-            data
-        );
+        SmartCoWOrder instance = new SmartCoWOrder(msg.sender, host, superToken, settlement, data);
 
         /** @dev: Require this contract to be a flowOperator for msg.sender */
         cfaV1.createFlowByOperator(msg.sender, address(instance), superToken, flowRate);
