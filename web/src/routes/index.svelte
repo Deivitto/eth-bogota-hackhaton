@@ -42,6 +42,7 @@
                             "https://rpc.ankr.com/moonbeam/",
                             "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
                             "https://eth-goerli-rpc.gateway.pokt.network/",
+                            "https://goerli.ethereum.coinbasecloud.net",
                         ],
                         blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
                     },
