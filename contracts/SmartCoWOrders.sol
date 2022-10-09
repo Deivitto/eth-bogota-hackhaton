@@ -12,6 +12,9 @@ import {ICoWSwapSettlement} from "./interfaces/ICoWSwapSettlement.sol";
 import {IERC20} from "@openzeppelin/contracts/interfaces/IERC20.sol";
 import {GPv2Order} from "./vendored/GPv2Order.sol";
 import {SmartCoWOrder} from "./SmartCoWOrder.sol";
+import {AutomationRegistryInterface} from "@chainlink/contracts/src/v0.8/interfaces/AutomationRegistryInterface1_2.sol";
+
+import {LinkTokenInterface} from "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol";
 
 contract SmartCoWOrders is SuperAppBase {
     using GPv2Order for *;
@@ -19,12 +22,24 @@ contract SmartCoWOrders is SuperAppBase {
     CFAv1Library.InitData public cfaV1;
     ISuperfluid host;
     ICoWSwapSettlement public immutable settlement;
+    LinkTokenInterface public immutable link;
+    address public immutable registrar;
+    AutomationRegistryInterface public immutable registry;
 
-    mapping(address => address) public addressToContract;
+    mapping(address => mapping(address => SmartCoWOrder)) public ownerToTokenToContract;
 
-    constructor(ISuperfluid host_, ICoWSwapSettlement settlement_) {
+    constructor(
+        ISuperfluid host_,
+        ICoWSwapSettlement settlement_,
+        LinkTokenInterface link_,
+        address registrar_,
+        AutomationRegistryInterface registry_
+    ) {
         settlement = settlement_;
         host = host_;
+        link = link_;
+        registrar = registrar_;
+        registry = registry_;
         // Initialize CFA Library
         cfaV1 = CFAv1Library.InitData(
             host,
@@ -45,64 +60,56 @@ contract SmartCoWOrders is SuperAppBase {
         host.registerApp(configWord);
     }
 
+    function fundUpkeep(
+        address owner,
+        address token,
+        uint96 linkAmount
+    ) external {
+        SmartCoWOrder instance = ownerToTokenToContract[owner][token];
+        require(address(instance) != address(0), "no instance created");
+        require(
+            link.transferFrom(msg.sender, address(instance), uint256(linkAmount)),
+            "link transfer failed"
+        );
+        instance.fundUpkeep(0);
+    }
+
     function place(
         SmartCoWOrder.Data calldata data,
         ISuperToken superToken,
-        int96 flowRate
+        int96 flowRate,
+        uint32 gasLimit,
+        uint96 linkAmount
     ) external {
         require(superToken.getUnderlyingToken() == address(data.sellToken), "!SuperToken");
-        SmartCoWOrder instance = new SmartCoWOrder(msg.sender, host, superToken, settlement, data);
+        require(
+            link.transferFrom(msg.sender, address(this), uint256(linkAmount)),
+            "link transfer failed"
+        );
+        SmartCoWOrder instance = new SmartCoWOrder(
+            msg.sender,
+            host,
+            superToken,
+            settlement,
+            data,
+            link,
+            registrar,
+            registry
+        );
+        require(link.transfer(address(instance), uint256(linkAmount)), "link transfer failed");
+        instance.registerAndPredictID(
+            "Smart DCA",
+            "",
+            address(instance),
+            gasLimit,
+            address(this),
+            "",
+            linkAmount,
+            0
+        );
 
         /** @dev: Require this contract to be a flowOperator for msg.sender */
         cfaV1.createFlowByOperator(msg.sender, address(instance), superToken, flowRate);
-        addressToContract[msg.sender] = address(instance);
+        ownerToTokenToContract[msg.sender][address(data.sellToken)] = instance;
     }
-
-    //     /**************************************************************************
-    //      * SuperApp callbacks
-    //      *************************************************************************/
-
-    //     function afterAgreementCreated(
-    //         ISuperToken _superToken,
-    //         address _agreementClass,
-    //         bytes32, // _agreementId,
-    //         bytes calldata _agreementData, /*_agreementData*/
-    //         bytes calldata, // _cbdata,
-    //         bytes calldata _ctx
-    //     ) external override returns (bytes memory newCtx) {}
-
-    //     function beforeAgreementUpdated(
-    //         ISuperToken _superToken,
-    //         address _agreementClass,
-    //         bytes32, /*agreementId*/
-    //         bytes calldata _agreementData, /*agreementData*/
-    //         bytes calldata /*ctx*/
-    //     ) external view virtual override returns (bytes memory cbdata) {}
-
-    //     function afterAgreementUpdated(
-    //         ISuperToken _superToken,
-    //         address _agreementClass,
-    //         bytes32, //_agreementId,
-    //         bytes calldata _agreementData, //agreementData,
-    //         bytes calldata _cbdata,
-    //         bytes calldata _ctx
-    //     ) external override returns (bytes memory newCtx) {}
-
-    //     function beforeAgreementTerminated(
-    //         ISuperToken, /*superToken*/
-    //         address, /*agreementClass*/
-    //         bytes32, /*agreementId*/
-    //         bytes calldata _agreementData, /*agreementData*/
-    //         bytes calldata /*ctx*/
-    //     ) external view virtual override returns (bytes memory cbdata) {}
-
-    //     function afterAgreementTerminated(
-    //         ISuperToken _superToken,
-    //         address _agreementClass,
-    //         bytes32, //_agreementId,
-    //         bytes calldata _agreementData, /*_agreementData*/
-    //         bytes calldata _cbdata,
-    //         bytes calldata _ctx
-    //     ) external override returns (bytes memory newCtx) {}
-    // }
 }

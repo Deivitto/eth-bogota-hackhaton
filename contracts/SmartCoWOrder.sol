@@ -11,6 +11,22 @@ import {CFAv1Library} from "@superfluid-finance/ethereum-contracts/contracts/app
 import {GPv2Order} from "./vendored/GPv2Order.sol";
 import {ICoWSwapOnchainOrders} from "./vendored/ICoWSwapOnchainOrders.sol";
 import {AutomationCompatibleInterface} from "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol";
+import {AutomationRegistryInterface, State, Config} from "@chainlink/contracts/src/v0.8/interfaces/AutomationRegistryInterface1_2.sol";
+import {LinkTokenInterface} from "@chainlink/contracts/src/v0.8/interfaces/LinkTokenInterface.sol";
+
+interface KeeperRegistrarInterface {
+    function register(
+        string memory name,
+        bytes calldata encryptedEmail,
+        address upkeepContract,
+        uint32 gasLimit,
+        address adminAddress,
+        bytes calldata checkData,
+        uint96 amount,
+        uint8 source,
+        address sender
+    ) external;
+}
 
 contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleInterface {
     using GPv2Order for *;
@@ -27,7 +43,14 @@ contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleI
     CFAv1Library.InitData public cfaV1;
     Data public data;
 
+    uint256 public upkeepID;
+    LinkTokenInterface public immutable link;
+    address public immutable registrar;
+    AutomationRegistryInterface public immutable registry;
+    bytes4 registerSig = KeeperRegistrarInterface.register.selector;
+
     bool isOpen = true;
+    bool isRegistered;
 
     struct Data {
         IERC20 sellToken;
@@ -42,19 +65,28 @@ contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleI
 
     event Downgraded(uint256 amount);
     event OrderUID(bytes orderUID);
+    event UpkeepFunded(uint96 fundAmount);
 
     constructor(
         address owner_,
         ISuperfluid host,
         ISuperToken superToken_,
-        ICoWSwapSettlement settlement,
-        Data memory data_
+        ICoWSwapSettlement settlement_,
+        Data memory data_,
+        LinkTokenInterface link_,
+        address registrar_,
+        AutomationRegistryInterface registry_
     ) {
         owner = owner_;
         superToken = superToken_;
         data = data_;
-        domainSeparator = settlement.domainSeparator();
-        IERC20(data.sellToken).approve(settlement.vaultRelayer(), type(uint256).max);
+        domainSeparator = settlement_.domainSeparator();
+        link = link_;
+        registrar = registrar_;
+        registry = registry_;
+
+        link.approve(address(registry), type(uint256).max);
+        IERC20(data.sellToken).approve(settlement_.vaultRelayer(), type(uint256).max);
         cfaV1 = CFAv1Library.InitData(
             host,
             IConstantFlowAgreementV1(
@@ -74,6 +106,15 @@ contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleI
             "Cant change tokens"
         );
         data = data_;
+    }
+
+    function fundUpkeep(uint256 linkAmount) external {
+        if (linkAmount != 0) {
+            require(link.transferFrom(msg.sender, address(this), linkAmount));
+        }
+        uint96 fundAmount = uint96(link.balanceOf(address(this)));
+        registry.addFunds(upkeepID, fundAmount);
+        emit UpkeepFunded(fundAmount);
     }
 
     function performUpkeep(
@@ -138,6 +179,50 @@ contract SmartCoWOrder is IERC1271, ICoWSwapOnchainOrders, AutomationCompatibleI
         IERC20 sellToken = IERC20(data.sellToken);
         sellToken.transfer(owner, sellToken.balanceOf(address(this)));
         superToken.transfer(owner, superToken.balanceOf(address(this)));
+        link.transfer(owner, link.balanceOf(address(this)));
         isOpen = false;
+    }
+
+    function registerAndPredictID(
+        string memory name,
+        bytes calldata encryptedEmail,
+        address upkeepContract,
+        uint32 gasLimit,
+        address adminAddress,
+        bytes calldata checkData,
+        uint96 amount,
+        uint8 source
+    ) external {
+        require(!isRegistered, "Already registered");
+        isRegistered = true;
+        (State memory state, , ) = registry.getState();
+        uint256 oldNonce = state.nonce;
+        bytes memory payload = abi.encode(
+            name,
+            encryptedEmail,
+            upkeepContract,
+            gasLimit,
+            adminAddress,
+            checkData,
+            amount,
+            source,
+            address(this)
+        );
+        link.transferAndCall(registrar, amount, bytes.concat(registerSig, payload));
+        (state, , ) = registry.getState();
+        uint256 newNonce = state.nonce;
+        if (newNonce == oldNonce + 1) {
+            upkeepID = uint256(
+                keccak256(
+                    abi.encodePacked(
+                        blockhash(block.number - 1),
+                        address(registry),
+                        uint32(oldNonce)
+                    )
+                )
+            );
+        } else {
+            revert("auto-approve disabled");
+        }
     }
 }
