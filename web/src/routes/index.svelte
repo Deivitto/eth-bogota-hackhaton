@@ -206,26 +206,31 @@
 
                 <p />
                 <div
-                    class="mt-10 mb-20 flex flex-col lg:flex-row second-box-content"
+                    class="mt-10 mb-10 flex flex-col lg:flex-row second-box-content"
                     style="font-size: 20px"
                 >
                     <div class="flex w-full flex-col text-left">
-                        <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
-                            Users can both create a CoW transaction or
-                            <b>browse CoW transactions</b>
+                        <div class="text-center mx-auto w-full max-w-xs flex-grow sm:max-w-md">
+                            Users can both <b>create a CoW transaction</b> or
+                            <b>add DCA monthly transactions</b>
                             For using CoW transactions follow these steps:
-                            <ul class="steps steps-vertical">
-                                <li class="step"><b>Create your transaction</b></li>
-                                <li class="step">LOREM IPSUM</li>
-                                <li class="step">LOREM IPSUM</li>
-                                <li class="step">LOREM IPSUM</li>
-                            </ul>
+                            <ol class="mt-4  text-center">
+                                <li class="">1 - Go to swap page</li>
+                                <li class="">2 - Add your tokens to buy and sell</li>
+                                <li class="">3 - Write a receiver address (optional)</li>
+                                <li class="">4 - Add a deadline (optional)</li>
+                                <li class="">5 - And sign the transaction</li>
+                            </ol>
                         </div>
+                        <p class="mt-4 text-center mx-auto w-full max-w-xs flex-grow sm:max-w-md">
+                            And that's all! You have used <b> SmartCow and </b>
+                            <b> CowSwap! </b>
+                        </p>
                         <div class="mt-4 flex h-16 items-start justify-center">
                             <a
                                 class="btn-what-is-a-transaction inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-3 text-center text-sm
                        font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-indigo-700 btn-tertiary btn"
-                                href="#transaction">What is a transaction?</a
+                                href="#transaction">What is a SmartCow transaction?</a
                             >
                         </div>
                     </div>
