@@ -9,7 +9,9 @@
         "usdc": "0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C",
         "fusdc": "0xc94dd466416A7dFE166aB2cF916D3875C049EBB7",
         "fusdcx": "0x8aE68021f6170E5a766bE613cEA0d75236ECCa9a",
-        "idav1": "0xfDdcdac21D64B639546f3Ce2868C7EF06036990c"
+        "idav1": "0xfDdcdac21D64B639546f3Ce2868C7EF06036990c",
+        "registar": "0x0405991C15F8a93401ceeDB3326C8d91F5708fB4",
+        "registry": "0x02777053d6764996e594c3E88AF1D58D5363a2e6"
     },
     "gnosis": {
         "host": "0x2dFe937cD98Ab92e59cF3139138f18c823a4efE7",
