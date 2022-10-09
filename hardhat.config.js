@@ -19,7 +19,7 @@ module.exports = {
         hardhat: {},
         goerli: {
             chainId: 5,
-            blockConfirmations: 6,
+            blockConfirmations: 1,
             url: GOERLI_RPC_URL,
             accounts: [PRIVATE_KEY],
         },
