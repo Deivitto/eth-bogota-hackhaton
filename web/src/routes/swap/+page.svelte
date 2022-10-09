@@ -3,7 +3,7 @@
 </script>
 
 <script>
-    import { connected, signerAddress, chainId } from "svelte-ethers-store"
+    import { connected, signerAddress, chainId, contracts } from "svelte-ethers-store"
     import Wallet from "$lib/WalletAddress.svelte"
     import SvgLogo from "$lib/svgLogo.svelte"
     import { onConnect, onDisconnect, connectWallet } from "$lib/web3"
@@ -36,6 +36,46 @@
         amountInput = document.querySelector("#amount1").value
         amountOutput = document.querySelector("#amount2").value
         console.log("swap worked", amountInput, amountOutput, dcaEnabled)
+        submit(amountInput, amountOutput)
+    }
+
+    async function submit(_buyAmount, _sellAmount) {
+        if (loading) {
+            return
+        }
+        loading = true
+
+        //     struct Data {
+        //     IERC20 sellToken;
+        //     IERC20 buyToken;
+        //     address receiver;
+        //     uint256 sellAmount;
+        //     uint256 buyAmount;
+        //     uint32 deadline;
+        //     uint256 feeAmount;
+        //     bytes meta;
+        // }
+        sellToken = "0xc94dd466416A7dFE166aB2cF916D3875C049EBB7"
+        buyToken = "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6"
+        receiver = "0x7d65378d2F64d512227aF6641afEF3D470C472dC"
+        sellAmount = _buyAmount != null ? _buyAmount : 1
+        buyAmount = _sellAmount != null ? _sellAmount : 1
+        try {
+            const tx = await $contracts.SmartCowOrders.place(
+                sellToken,
+                buyToken,
+                receiver,
+                sellAmount,
+                buyAmount,
+                10000,
+                0,
+                ""
+            )
+            await tx.wait()
+        } catch (err) {
+            console.error(err)
+        }
+        loading = false
     }
 
     async function changeNetwork() {
