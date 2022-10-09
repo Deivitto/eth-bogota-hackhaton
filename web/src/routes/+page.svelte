@@ -3,8 +3,8 @@
 </script>
 
 <svelte:head>
-    <title>milky_chain.eth</title>
-    <meta name="description" content="milky_chain.eth demo app" />
+    <title>smartCow</title>
+    <meta name="description" content="smartCow demo app" />
     <!-- this is for the web3modal -->
     <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
     <script

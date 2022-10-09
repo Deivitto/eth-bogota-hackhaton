@@ -4,6 +4,8 @@
 
 <script>
     import { connected, signerAddress, chainId } from "svelte-ethers-store"
+    // import SmartCow from "./../../assets/smartcow.png"
+    import SmartCowLink from "$lib/smartcow.png"
     import SvgCheck from "$lib/svgCheck.svelte"
     import SvgLogo from "$lib/svgLogo2.svelte"
     import Wallet from "$lib/WalletAddress.svelte"
@@ -34,13 +36,12 @@
                             symbol: "MATIC",
                             decimals: 18,
                         },
+
                         rpcUrls: [
                             "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
-                            // "https://rpc-mumbai.matic.today/",
-                            // "https://matic-mumbai.chainstacklabs.com",
-                            // "https://rpc-mumbai.maticvigil.com/",
-                            // "https://matic-testnet-archive-rpc.bwarelabs.com/"
+                            "https://rpc.ankr.com/moonbeam/",
                             "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                            "https://eth-goerli-rpc.gateway.pokt.network/",
                         ],
                         blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
                     },
@@ -87,17 +88,11 @@
                             {/if}
                         </div>
                     {/if}
-                    <!-- <div class="logo-container  ">
-              <a href="/"
-                ><img
-                  class="logo-image"
-                  src="./sponsrethgold2.png"
-                  alt="milk.eth"
-                /></a
-              >
-            </div> -->
-                    <SvgLogo />
-                    <div class="mb-2 text-5xl lg:text-7xl title_milketh">milk_chains.eth</div>
+                    <img style="max-width:54px" src={SmartCowLink} alt="Smart Cow Logo" />
+
+                    <!-- <SmartCow /> -->
+                    <!-- <SvgLogo /> -->
+                    <div class="mb-2 text-5xl lg:text-7xl title_milketh">smartCow</div>
                     <div class="text-2xl lg:text-3xl pt-4 subtitle_milketh">
                         Work with your transactions in the best way!<br />
                         <!-- somethnig more here??-->
@@ -135,12 +130,12 @@
                         >
                             Connect
                         </button>
-                        <button
+                        <!-- <button
                             on:click={runScript}
                             class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
                         >
                             Test Script
-                        </button>
+                        </button> -->
                         <!-- <button
                             on:click={connectWallet}
                             class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
@@ -205,29 +200,37 @@
                 <h2 class="mt-32 mb-2 text-4xl font-extrabold md:text-6xl">How does it work?</h2>
                 <h3 class="mb-5 text-3xl font-bold">As simple as a regular transaction</h3>
                 <p class="mx-auto  mb-5 w-full max-w-lg" style="font-size: 20px">
-                    milk_chains.eth aims to help regular users to perform transactions in the more
-                    efficient and effective way
+                    smartCow aims to help regular users to perform transactions in the more
+                    efficient and effective way using ERC1271 standard
                 </p>
 
                 <p />
-                <div class="mt-10 mb-20 flex flex-col lg:flex-row" style="font-size: 20px">
+                <div
+                    class="mt-10 mb-10 flex flex-col lg:flex-row second-box-content"
+                    style="font-size: 20px"
+                >
                     <div class="flex w-full flex-col text-left">
-                        <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
+                        <div class="text-center mx-auto w-full max-w-xs flex-grow sm:max-w-md">
                             Users can both <b>create a CoW transaction</b> or
-                            <b>browse CoW transactions</b>
+                            <b>add DCA monthly transactions</b>
                             For using CoW transactions follow these steps:
-                            <ul class="steps steps-vertical">
-                                <li class="step"><b>Create your transaction</b></li>
-                                <li class="step">LOREM IPSUM</li>
-                                <li class="step">LOREM IPSUM</li>
-                                <li class="step">LOREM IPSUM</li>
-                            </ul>
+                            <ol class="mt-4  text-center">
+                                <li class="">1 - Go to swap page</li>
+                                <li class="">2 - Add your tokens to buy and sell</li>
+                                <li class="">3 - Write a receiver address (optional)</li>
+                                <li class="">4 - Add a deadline (optional)</li>
+                                <li class="">5 - Sign the transaction</li>
+                            </ol>
                         </div>
+                        <p class="mt-4 text-center mx-auto w-full max-w-xs flex-grow sm:max-w-md">
+                            And that's all! You have used <b> SmartCow and </b>
+                            <b> CowSwap! </b>
+                        </p>
                         <div class="mt-4 flex h-16 items-start justify-center">
                             <a
                                 class="btn-what-is-a-transaction inline-block cursor-pointer rounded-md bg-indigo-600 px-4 py-3 text-center text-sm
                        font-semibold uppercase text-white transition duration-200 ease-in-out hover:bg-indigo-700 btn-tertiary btn"
-                                href="#transaction">What is a transaction?</a
+                                href="#transaction">What is a SmartCow transaction?</a
                             >
                         </div>
                     </div>
@@ -243,14 +246,20 @@
         <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
             <div id="transaction">
                 <h2 class="mt-20 mb-12 text-4xl font-extrabold md:text-6xl">
-                    What is a transaction with CoW?
+                    Why a transaction with SmarCow?
                 </h2>
                 <!-- <h3 class="mb-5 text-3xl font-bold">Lorem ipsum</h3> -->
-                <p class="mx-auto mb-5 w-full regular-text lh-regular">LOREM IPSUM</p>
+                <p class="mx-auto mb-5 w-full regular-text lh-regular">
+                    Transaction with SmartCow uses CowSwap for creating decentralized transactions
+                    with MEV protection, lower fees than other exchanges (due to Coincidence of
+                    Wants), the best price and you don't need to think about more investments
+                    strategies as we can serve you with a regular DCA at the best price!
+                </p>
 
-                <div class="my-20 flex flex-col custom-button-centered">
-                    <a class="btn btn-primary    rounded-full" href="/swap"
-                        >Create your first CoW transaction!</a
+                <div class="my-20 flex flex-col custom-button-centered align-middle">
+                    <a
+                        class="uppercase text-white btn btn-primary btn-first-tx   rounded-full"
+                        href="/swap">Create a smartCoW transaction!</a
                     >
                 </div>
             </div>
@@ -263,28 +272,28 @@
     >
         <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
             <div>
-                <h2 class="mt-20 mb-8  text-4xl font-extrabold md:text-6xl">Browse transactions</h2>
+                <h2 class="mt-20 mb-8  text-4xl font-extrabold md:text-6xl">
+                    Enable automatic DCA with SmartCow!
+                </h2>
                 <h3 class="mb-5 text-3xl font-bold regular-text-title">
-                    Looking for your optimal transactions? This is your place!
+                    Looking for your optimal DCA? This is your place!
                 </h3>
                 <p class="mx-auto mb-5 w-full max-w-l regular-text-smaller">
-                    Search transactions with our easy to use interface<br />
-                    LOREM IPSUM EXPLANATION
+                    Chainlink automation allows the aforementioned process to run as long as there
+                    are active streams (and $LINK)
                 </p>
 
                 <div
-                    class="my-20 flex flex-col md:flex-row custom-button-centered space-between md:gap-4"
+                    class="my-20 flex flex-col md:flex-row custom-button-centered space-between md:gap-4 centered-buttons-small"
                 >
                     <a
                         class="btn  btn-tertiary btn-outline rounded-full w-full md:w-1/2 btn-fix"
-                        href="/mistery-transactions">Mistery button</a
+                        href="https://www.investopedia.com/terms/d/dollarcostaveraging.asp#:~:text=Dollar%2Dcost%20averaging%20is%20the,the%20average%20cost%20per%20share."
+                        >More information</a
                     >
                     <br />
-                    <a
-                        class="btn btn-tertiary rounded-full w-full md:w-1/2 btn-fix"
-                        href="/browse-transactions"
-                    >
-                        Browse transactions!</a
+                    <a class="btn btn-tertiary rounded-full w-full md:w-1/2 btn-fix" href="/swap">
+                        Enable DCA with CowSwap!</a
                     >
                 </div>
             </div>
@@ -297,6 +306,8 @@
         --primary: rgb(214, 123, 90) !important;
         --secondary: rgb(22, 56, 97) !important;
         --tertiary: rgb(123, 90, 214) !important;
+        --white-hover: rgb(255, 255, 255) !important;
+
         --primary-light: rgba(214, 123, 90, 0.375) !important;
         --primary-hover: rgb(237, 137, 100) !important;
         --tertiary-light: rgba(123, 90, 214, 0.375) !important;
@@ -809,6 +820,7 @@
     .btn-primary:hover {
         background-color: var(--primary-hover) !important;
         border-color: var(--primary-hover) !important;
+        color: var(--white-hover) !important;
     }
 
     .btn-secondary {
@@ -819,6 +831,7 @@
     .btn-secondary:hover {
         background-color: var(--secondary-hover) !important;
         border-color: var(--secondary-hover) !important;
+        color: var(--white-hover) !important;
     }
 
     .btn-tertiary {
@@ -829,6 +842,7 @@
     .btn-tertiary:hover {
         background-color: var(--tertiary-hover) !important;
         border-color: var(--tertiary-hover) !important;
+        color: var(--white-hover) !important;
     }
 
     .btn-custom-arrow {
@@ -898,6 +912,11 @@
         border: 1px solid transparent;
         min-height: 3rem;
         transition: 0.5s ease;
+        max-width: 350px;
+        text-align: center;
+        justify-content: center;
+
+        min-width: 250px;
     }
 
     .btn-ghost {
@@ -922,5 +941,44 @@
     #how {
         margin-top: 4rem !important;
         margin-bottom: 4rem !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+
+    #how > h2 {
+        margin-top: 2rem !important;
+    }
+
+    .second-box-content {
+        margin-bottom: 3rem;
+    }
+
+    .btn-what-is-a-transaction {
+        margin-top: 1.5rem;
+    }
+
+    .centered-buttons-small {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .button-first-section {
+        margin-left: initial;
+        margin-right: initial;
+    }
+
+    .btn-first-tx {
+        max-width: none;
+    }
+
+    @media (max-width: 768px) {
+        .btn {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
     }
 </style>

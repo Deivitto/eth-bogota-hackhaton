@@ -4,15 +4,15 @@ import { defaultEvmStores } from "svelte-ethers-store"
 // import CoinbaseWalletSDK from "@coinbase/wallet-sdk"
 // import WalletConnect from "@walletconnect/web3-provider"
 
-import abi from "./abi/ourContract.json"
+import abi from "./abi/SmartCoWOrders.json"
 
 // Web3modal instance
 let web3Modal
 
 // Chosen wallet provider given by the dialog window
 let provider
-const contractName = "ourContractName"
-const contractAddress = "0xCEfa58184aa1C45Baa98B02687451B412F2Acaa6"
+const contractName = "SmartCoWOrders"
+const contractAddress = "0xceBD682De5DACb732F9b1A2468C6aC0E12Ee8f5e"
 
 /**
  * Setup the orchestra
@@ -30,6 +30,12 @@ export const connectWallet = async () => {
             options: {
                 appName: "Web 3 Modal Demo",
                 // infuraId: process.env.INFURA_KEY,
+                rpc: {
+                    80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                    1284: "https://rpc.ankr.com/moonbeam/",
+                    1: "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                    5: "https://eth-goerli-rpc.gateway.pokt.network/",
+                },
             },
         },
         walletconnect: {
@@ -38,7 +44,9 @@ export const connectWallet = async () => {
                 // Mikko's test key - don't copy as your mileage may vary
                 rpc: {
                     80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
-                    // "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                    1284: "https://rpc.ankr.com/moonbeam/",
+                    1: "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                    5: "https://eth-goerli-rpc.gateway.pokt.network/",
                 },
             },
         },
@@ -88,6 +96,9 @@ export async function init() {
                             // Mikko's test key - don't copy as your mileage may vary
                             rpc: {
                                 80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                                1284: "https://rpc.ankr.com/moonbeam/",
+                                1: "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                                5: "https://eth-goerli-rpc.gateway.pokt.network/",
                             },
                         },
                     },
@@ -99,6 +110,9 @@ export async function init() {
                         },
                         rpc: {
                             80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                            1284: "https://rpc.ankr.com/moonbeam/",
+                            1: "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
+                            5: "https://eth-goerli-rpc.gateway.pokt.network/",
                         },
                     },
                 }
