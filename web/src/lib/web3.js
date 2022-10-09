@@ -29,7 +29,7 @@ export const connectWallet = async () => {
             package: CoinbaseWalletProvider,
             options: {
                 appName: "Web 3 Modal Demo",
-                // infuraId: process.env.INFURA_KEY,
+
                 rpc: {
                     80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
                     1284: "https://rpc.ankr.com/moonbeam/",
@@ -42,7 +42,7 @@ export const connectWallet = async () => {
         walletconnect: {
             package: WalletConnectProvider,
             options: {
-                // Mikko's test key - don't copy as your mileage may vary
+                //
                 rpc: {
                     80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
                     1284: "https://rpc.ankr.com/moonbeam/",
