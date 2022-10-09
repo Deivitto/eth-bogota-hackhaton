@@ -38,6 +38,7 @@ export const connectWallet = async () => {
                 // Mikko's test key - don't copy as your mileage may vary
                 rpc: {
                     80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                    // "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
                 },
             },
         },
@@ -57,80 +58,81 @@ export const connectWallet = async () => {
 }
 
 export async function init() {
-    const WalletConnectProvider = window.WalletConnectProvider.default
-    const CoinbaseWalletProvider = window.CoinbaseWalletProvider.prototype
-    console.log(CoinbaseWalletSDK)
-    console.log(window.CoinbaseWalletSDK)
-    console.log("Initializing example")
-    console.log("WalletConnectProvider is", WalletConnectProvider)
-    console.log("window.web3 is", ethers, "window.ethereum is", window.ethereum)
-
-    // Check that the web page is run in a secure context,
-    // as otherwise MetaMask won't be available
-
-    // Tell Web3modal what providers we have available.
-    // Built-in web browser provider (only one can exist as a time)
-    // like MetaMask, Brave or Opera is added automatically by Web3modal
-    const providerOptions = {
-        walletconnect: {
-            package: WalletConnectProvider,
-            options: {
-                // Mikko's test key - don't copy as your mileage may vary
-                rpc: {
-                    80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
-                },
-            },
-        },
-        coinbasewallet: {
-            package: CoinbaseWalletSDK,
-            options: {
-                appName: "Web 3 Modal Demo",
-                // infuraId: process.env.INFURA_KEY,
-            },
-            rpc: {
-                80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
-            },
-        },
-    }
-
-    //     web3Modal = new Web3Modal({
-    //     providerOptions, // required
-    // })
-    // try {
-    //     const provider = await web3Modal.connect()
-    //     const library = new ethers.providers.Web3Provider(provider)
-    //     // setProvider(provider);
-    //     // setLibrary(library);
-    // } catch (error) {
-    //     console.error(error)
-    // }
-
-    // web3Modal = new window.Web3Modal.default({
-    //     cacheProvider: true, // optional
-    //     providerOptions, // required
-    //     disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
-    // })
-
-    web3Modal = new Web3Modal({
-        cacheProvider: true, // optional
-        providerOptions, // required
-        disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
-    })
-
+    console.log("init start", window)
     try {
-        if (web3Modal.cachedProvider) {
-            // provider = await web3Modal.connect()
-            const provider = await web3Modal.connect()
-            const library = new ethers.providers.Web3Provider(provider)
-            defaultEvmStores.setProvider(provider)
-        }
-        // setProvider(provider);
-        // setLibrary(library);
+        if (window != null) {
+            if (window.WalletConnectProvider != null && window.CoinbaseWalletProvider != null) {
+                console.log("There is a window")
+                console.log("WalletConnect", window.WalletConnectProvider)
+                const WalletConnectProvider = window.WalletConnectProvider.default
+                console.log("CoinbaseWalletProvider", window.CoinbaseWalletProvider)
+                const CoinbaseWalletProvider = window.CoinbaseWalletProvider.prototype
+                console.log("Providers ")
+
+                // console.log(CoinbaseWalletSDK)
+                console.log(window.CoinbaseWalletSDK)
+                console.log("Initializing example")
+                console.log("WalletConnectProvider is", WalletConnectProvider)
+                console.log("window.web3 is", ethers, "window.ethereum is", window.ethereum)
+
+                // Check that the web page is run in a secure context,
+                // as otherwise MetaMask won't be available
+
+                // Tell Web3modal what providers we have available.
+                // Built-in web browser provider (only one can exist as a time)
+                // like MetaMask, Brave or Opera is added automatically by Web3modal
+                const providerOptions = {
+                    walletconnect: {
+                        package: WalletConnectProvider,
+                        options: {
+                            // Mikko's test key - don't copy as your mileage may vary
+                            rpc: {
+                                80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                            },
+                        },
+                    },
+                    coinbasewallet: {
+                        package: CoinbaseWalletSDK,
+                        options: {
+                            appName: "Web 3 Modal Demo",
+                            // infuraId: process.env.INFURA_KEY,
+                        },
+                        rpc: {
+                            80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                        },
+                    },
+                }
+                console.log(providerOptions)
+                web3Modal = new Web3Modal({
+                    cacheProvider: true, // optional
+                    providerOptions, // required
+                    disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
+                })
+                console.log(web3Modal)
+
+                try {
+                    if (web3Modal.cachedProvider) {
+                        provider = await web3Modal.connect()
+                        const provider = await web3Modal.connect()
+                        const library = new ethers.providers.Web3Provider(provider)
+                        defaultEvmStores.setProvider(provider)
+                    }
+                    // setProvider(provider);
+                    // setLibrary(library);
+                } catch (error) {
+                    console.error(error)
+                }
+                console.log("Web3Modal instance is", web3Modal)
+            }
+        } else
+            try {
+                connectWallet()
+            } catch (error) {
+                console.error(error)
+            }
     } catch (error) {
         console.error(error)
     }
-
-    console.log("Web3Modal instance is", web3Modal)
 }
 
 export function loadContracts() {
@@ -158,7 +160,7 @@ export async function onDisconnect() {
     console.log("Killing the wallet connection", provider)
 
     // TODO: Which providers have close method?
-    if (provider.close) {
+    if (provider.close || provider == null) {
         await provider.close()
 
         // If the cached provider is not cleared,

@@ -2,14 +2,21 @@
     import "../app.postcss"
     import "./styles.css"
 
-    import { onMount } from "svelte"
+    import { onMount, beforeUpdate, afterUpdate } from "svelte"
     import { init, loadContracts } from "$lib/web3"
     import { signerAddress } from "svelte-ethers-store"
 
     onMount(() => {
+        if (window.location.href.includes("/swap")) window.location.replace("/")
         init()
     })
+    // beforeUpdate(() => {
+    //     init()
+    // })
 
+    // afterUpdate(() => {
+    //     init()
+    // })
     $: if ($signerAddress) {
         try {
             loadContracts()
@@ -28,34 +35,4 @@
 </div>
 
 <style>
-    .app {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    main {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        padding: 1rem;
-        width: 100%;
-        max-width: 64rem;
-        margin: 0 auto;
-        box-sizing: border-box;
-    }
-
-    footer {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 12px;
-    }
-
-    @media (min-width: 480px) {
-        footer {
-            padding: 12px 0;
-        }
-    }
 </style>
