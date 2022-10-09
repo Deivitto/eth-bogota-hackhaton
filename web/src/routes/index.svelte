@@ -201,7 +201,7 @@
                 <h3 class="mb-5 text-3xl font-bold">As simple as a regular transaction</h3>
                 <p class="mx-auto  mb-5 w-full max-w-lg" style="font-size: 20px">
                     smartCow aims to help regular users to perform transactions in the more
-                    efficient and effective way
+                    efficient and effective way using ERC1271 standard
                 </p>
 
                 <p />
@@ -211,7 +211,7 @@
                 >
                     <div class="flex w-full flex-col text-left">
                         <div class=" mx-auto w-full max-w-xs flex-grow sm:max-w-md">
-                            Users can both <b>create a CoW transaction</b> or
+                            Users can both create a CoW transaction or
                             <b>browse CoW transactions</b>
                             For using CoW transactions follow these steps:
                             <ul class="steps steps-vertical">
@@ -241,14 +241,20 @@
         <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
             <div id="transaction">
                 <h2 class="mt-20 mb-12 text-4xl font-extrabold md:text-6xl">
-                    What is a transaction with CoW?
+                    Why a transaction with SmarCow?
                 </h2>
                 <!-- <h3 class="mb-5 text-3xl font-bold">Lorem ipsum</h3> -->
-                <p class="mx-auto mb-5 w-full regular-text lh-regular">LOREM IPSUM</p>
+                <p class="mx-auto mb-5 w-full regular-text lh-regular">
+                    Transaction with SmartCow uses CowSwap for creating decentralized transactions
+                    with MEV protection, lower fees than other exchanges (due to Coincidence of
+                    Wants), the best price and you don't need to think about more investments
+                    strategies as we can serve you with a regular DCA at the best price!
+                </p>
 
                 <div class="my-20 flex flex-col custom-button-centered align-middle">
-                    <a class="btn btn-primary btn-first-tx   rounded-full" href="/swap"
-                        >Create your first CoW transaction!</a
+                    <a
+                        class="uppercase text-white btn btn-primary btn-first-tx   rounded-full"
+                        href="/swap">Create a smartCoW transaction!</a
                     >
                 </div>
             </div>
@@ -261,13 +267,15 @@
     >
         <div class="hero-content mx-auto max-w-md text-center md:max-w-full">
             <div>
-                <h2 class="mt-20 mb-8  text-4xl font-extrabold md:text-6xl">Browse transactions</h2>
+                <h2 class="mt-20 mb-8  text-4xl font-extrabold md:text-6xl">
+                    Enable automatic DCA with SmartCow!
+                </h2>
                 <h3 class="mb-5 text-3xl font-bold regular-text-title">
-                    Looking for your optimal transactions? This is your place!
+                    Looking for your optimal DCA? This is your place!
                 </h3>
                 <p class="mx-auto mb-5 w-full max-w-l regular-text-smaller">
-                    Search transactions with our easy to use interface<br />
-                    LOREM IPSUM EXPLANATION
+                    Chainlink automation allows the aforementioned process to run as long as there
+                    are active streams (and $LINK)
                 </p>
 
                 <div
@@ -275,14 +283,12 @@
                 >
                     <a
                         class="btn  btn-tertiary btn-outline rounded-full w-full md:w-1/2 btn-fix"
-                        href="/mistery-transactions">Mistery button</a
+                        href="https://www.investopedia.com/terms/d/dollarcostaveraging.asp#:~:text=Dollar%2Dcost%20averaging%20is%20the,the%20average%20cost%20per%20share."
+                        >More information</a
                     >
                     <br />
-                    <a
-                        class="btn btn-tertiary rounded-full w-full md:w-1/2 btn-fix"
-                        href="/browse-transactions"
-                    >
-                        Browse transactions!</a
+                    <a class="btn btn-tertiary rounded-full w-full md:w-1/2 btn-fix" href="/swap">
+                        Enable DCA with CowSwap!</a
                     >
                 </div>
             </div>
