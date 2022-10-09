@@ -11,6 +11,7 @@ const POLYGON_RPC_URL = process.env.POLYGON_RPC_URL || ""
 const PRIVATE_KEY = process.env.PRIVATE_KEY || ""
 const GNOSIS_RPC_URL = process.env.GNOSIS_RPC_URL || ""
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
+const GNOSISSCAN_API_KEY = process.env.GNOSISSCAN_API_KEY || ""
 const COINMARKETCAP_API_KEY = process.env.COINMARKETCAP_API_KEY || ""
 
 module.exports = {
@@ -62,7 +63,11 @@ module.exports = {
         token: "ETH",
     },
     etherscan: {
-        apiKey: ETHERSCAN_API_KEY,
+        apiKey: {
+            xdai: GNOSISSCAN_API_KEY,
+            goerli: ETHERSCAN_API_KEY,
+            mainnet: ETHERSCAN_API_KEY,
+        },
     },
     mocha: {
         timeout: 200000,
