@@ -19,7 +19,10 @@
         "settlement": "0x9008D19f58AAbD9eD0D60971565AA8510560ab41",
         "daix": "0x59988e47A3503AaFaA0368b9deF095c818Fdca01",
         "usdc": "0xDDAfbb505ad214D7b80b1f830fcCc89B60fb7A83",
-        "usdcx": "0x1234756ccf0660E866305289267211823Ae86eEc"
+        "usdcx": "0x1234756ccf0660E866305289267211823Ae86eEc",
+        "link": "0xE2e73A1c69ecF83F464EFCE6A5be353a37cA09b2",
+        "registar": "0x0405991C15F8a93401ceeDB3326C8d91F5708fB4",
+        "registry": "0x02777053d6764996e594c3E88AF1D58D5363a2e6"
     },
     "polygon": {
         "host": "0x3E14dC1b13c488a8d5D310918780c983bD5982E7",
