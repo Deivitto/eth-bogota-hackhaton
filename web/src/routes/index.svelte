@@ -5,6 +5,7 @@
 <script>
     import { connected, signerAddress, chainId } from "svelte-ethers-store"
     import SvgCheck from "$lib/svgCheck.svelte"
+    import SvgLogo from "$lib/svgLogo2.svelte"
     import Wallet from "$lib/WalletAddress.svelte"
 
     // import { main } from "$lib/placeOrder"
@@ -94,7 +95,7 @@
                 /></a
               >
             </div> -->
-
+                    <SvgLogo />
                     <div class="mb-2 text-5xl lg:text-7xl title_milketh">milk_chains.eth</div>
                     <div class="text-2xl lg:text-3xl pt-4 subtitle_milketh">
                         Work with your transactions in the best way!<br />
@@ -159,8 +160,8 @@
                         >
                             Swap
                         </a>
-                        <a href="/faq" class="btn button-first-section lg:btn-lg normal-case">FAQ</a
-                        >
+                        <!-- <a href="/faq" class="btn button-first-section lg:btn-lg normal-case">FAQ</a
+                        > -->
                     {/if}
                     <a
                         href="/check-txs"

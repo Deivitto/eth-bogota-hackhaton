@@ -15,7 +15,7 @@
     <div class="sc-pradxg-4 eKAXzW s-ZsLpis4vdNUR">
         <div
             class="sc-pradxg-7 bYIEGZ css-z9m35u s-ZsLpis4vdNUR"
-            style="flex-shrink: 0; user-select: none;"
+            style="flex-shrink: 0; user-select: none; color:#fff"
         >
             0 {currency}
         </div>
