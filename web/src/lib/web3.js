@@ -38,6 +38,7 @@ export const connectWallet = async () => {
                 // Mikko's test key - don't copy as your mileage may vary
                 rpc: {
                     80001: "https://matic-mumbai--jsonrpc.datahub.figment.io/apikey/f1f9f2031af0fbbd9d45fb6c87caf3c2",
+                    // "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
                 },
             },
         },

@@ -40,6 +40,7 @@
                             // "https://matic-mumbai.chainstacklabs.com",
                             // "https://rpc-mumbai.maticvigil.com/",
                             // "https://matic-testnet-archive-rpc.bwarelabs.com/"
+                            "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
                         ],
                         blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
                     },
@@ -146,29 +147,29 @@
                         >
                             Connect Wallet 2
                         </button> -->
-                        <a
+                        <!-- <a
                             href="/swap"
                             class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case "
                         >
                             Swap
-                        </a>
+                        </a> -->
                         <!-- <a href="#how" class="btn lg:btn-lg normal-case">How does it work?</a> -->
                     {:else}
-                        <a
-                            href="/swap"
-                            class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
-                        >
-                            Swap
-                        </a>
                         <!-- <a href="/faq" class="btn button-first-section lg:btn-lg normal-case">FAQ</a
                         > -->
                     {/if}
                     <a
+                        href="/swap"
+                        class="btn btn-tertiary button-first-section btn-ghost btn-active lg:btn-lg normal-case"
+                    >
+                        Swap
+                    </a>
+                    <!-- <a
                         href="/check-txs"
                         class="btn btn-tertiary button-first-section btn-active lg:btn-lg normal-case"
                     >
                         Check CoW transactions
-                    </a>
+                    </a> -->
                 </div>
                 <!-- <img
                     class="ethereum-gif"

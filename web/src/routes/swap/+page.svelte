@@ -40,6 +40,7 @@
                             // "https://matic-mumbai.chainstacklabs.com",
                             // "https://rpc-mumbai.maticvigil.com/",
                             // "https://matic-testnet-archive-rpc.bwarelabs.com/"
+                            "https://eth-mainnet.gateway.pokt.network/v1/lb/5db541c720ddaa659cf004d2",
                         ],
                         blockExplorerUrls: ["https://mumbai.polygonscan.com/"],
                     },
@@ -62,25 +63,6 @@
                 <div class="sc-pradxg-0 cDPxHR">
                     <a href="." class="sc-pradxg-8 gJaIbL"
                         ><div class="sc-pradxg-9 hzptBO">
-                            <!-- <div class="logo-container ">
-                                <a href="/"
-                                    ><img
-                                        class="logo-image"
-                                        src="./home_logo.png"
-                                        alt="home_logo.eth"
-                                    /></a
-                                >
-                            </div> -->
-                            <!-- <svg
-                            width="24px"
-                            height="100%"
-                            viewBox="0 0 14 15"
-                            fill="#FFFFFF"
-                            xmlns="http://www.w3.org/2000/svg"
-                            ><title>logo</title></svg 
-                            > @audit svg with logo
-                        
-                        -->
                             <SvgLogo />
                         </div></a
                     >
@@ -99,26 +81,7 @@
                                 class="sc-pradxg-10 gfRsre"
                                 href="#/pool">Connect</a
                             >
-                            <!-- <button
-                                on:click={onConnect}
-                                class="btn button-first-section btn-ghost btn-active lg:btn-lg normal-case"
-                            >
-                                Connect
-                            </button> -->
                         {/if}
-
-                        <!-- <a
-                            data-cy="pool-nav-link"
-                            id="pool-nav-link"
-                            class="sc-pradxg-10 gfRsre"
-                            href="#/pool">Pool</a
-                        ><a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href="https://info.uniswap.org/#/arbitrum"
-                            id="charts-nav-link"
-                            class="sc-1cchcrx-10 dVAOBx sc-pradxg-11 kskfLb">Charts<sup>↗</sup></a
-                        > -->
                     </div>
                     <div class="sc-pradxg-1 byWPhu">
                         <div class="sc-pradxg-2 laabeG">
@@ -148,71 +111,15 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="sc-pradxg-2 laabeG">
-                            <div class="sc-pradxg-4 eKAXzW">
-                                <div
-                                    class="sc-pradxg-7 bYIEGZ css-z9m35u"
-                                    style="flex-shrink: 0; user-select: none;"
-                                >
-                                    {balance}
-                                </div>
-                                <span
-                                    ><button
-                                        data-testid="web3-status-connected"
-                                        class="sc-bczRLJ lfsInV sc-fwrjc2-0 sc-fwrjc2-4 sc-m6ivbz-0 sc-m6ivbz-4 ffWXsK hYTqPD ihvkLg jnTWTk"
-                                        ><p class="sc-m6ivbz-5 ldiIWn">asdas{address}</p>
-                                        <div size="16" class="sc-16lz3aa-0 hVuOEJ">
-                                            <div class="sc-z4caw7-0 fyqfbY">
-                                                <span
-                                                    ><div
-                                                        style="border-radius: 50px; overflow: hidden; padding: 0px; margin: 0px; width: 16px; height: 16px; display: inline-block; background: rgb(250, 58, 0);"
-                                                    >
-                                                        <svg x="0" y="0" width="16" height="16"
-                                                            ><rect
-                                                                x="0"
-                                                                y="0"
-                                                                width="16"
-                                                                height="16"
-                                                                transform="translate(2.098874115463103 -0.07934382970125567) rotate(456.5 8 8)"
-                                                                fill="#C81477"
-                                                            /><rect
-                                                                x="0"
-                                                                y="0"
-                                                                width="16"
-                                                                height="16"
-                                                                transform="translate(-3.214964086684321 -7.956033443566552) rotate(319.5 8 8)"
-                                                                fill="#F90501"
-                                                            /><rect
-                                                                x="0"
-                                                                y="0"
-                                                                width="16"
-                                                                height="16"
-                                                                transform="translate(4.206701226478874 -14.292925700943588) rotate(358.9 8 8)"
-                                                                fill="#FB1895"
-                                                            /></svg
-                                                        >
-                                                    </div></span
-                                                >
-                                            </div>
-                                        </div></button
-                                    ></span
-                                >
-                            </div>
-                        </div> -->
+
                         <!-- Wallet block -->
                         {#if $connected}
                             <div class="floating-button-container btn btn-tertiar ">
                                 <!-- content -->
                                 {#if $chainId == 80001}
-                                    <!-- {start_string}{end_string} -->
                                     <div on:click={onDisconnect}>
                                         <Wallet />
                                     </div>
-
-                                    <!-- <button class="floating-button-wallet" on:click={onDisconnect}>
-                                asdasdasdas
-                                <span class="floating-button-address" />
-                            </button> -->
                                 {:else}
                                     <button class="floating-button-wallet" on:click={changeNetwork}>
                                         WRONG NETWORK!
@@ -262,24 +169,6 @@
                 <div class="sc-1kykgp9-2 sc-fo3pji-2 hinUJE leVPqs" />
                 <div height="0" class="sc-fo3pji-0 bqnskO"><div class="sc-fo3pji-1 gLdiTM" /></div>
                 <div class="sc-bczRLJ sc-nrd8cx-0 sc-nrd8cx-4 hJYFVB gBBPoP leSroW">
-                    <!-- <div class="sc-123dig8-0 dNrztM">
-                        <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href="https://etherscan.io/gastracker"
-                            class="sc-1cchcrx-10 dVAOBx"
-                        />
-                        <div class="sc-18nh1jk-0 horBTe sc-123dig8-1 dCKcsh css-x9zcw6">
-                            <a
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                href="https://arbiscan.io/block/29133853"
-                                class="sc-1cchcrx-10 dVAOBx"
-                                ><div class="sc-d5tbhs-1 cSretk"><div>{ping}&ensp;</div></div></a
-                            >
-                        </div>
-                        <div class="sc-123dig8-2 bfesFx" />
-                    </div> -->
                 </div>
                 <div
                     class="_1klryar0 rgw6ez3lg rgw6ez3lb rgw6ez14g rgw6ez15b rgw6ez1ay rgw6ez1bt rgw6ez43g rgw6ez2z4 rgw6ez34h rgw6ez39y rgw6ez34n rgw6ez3a4 rgw6ez3fh rgw6ez3z4"
