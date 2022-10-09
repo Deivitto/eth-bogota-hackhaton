@@ -150,7 +150,11 @@ export async function init() {
 }
 
 export function loadContracts() {
-    defaultEvmStores.attachContract(contractName, contractAddress, JSON.stringify(abi))
+    try {
+        defaultEvmStores.attachContract(contractName, contractAddress, JSON.stringify(abi))
+    } catch (error) {
+        console.error(error)
+    }
 }
 
 /**
@@ -174,7 +178,7 @@ export async function onDisconnect() {
     console.log("Killing the wallet connection", provider)
 
     // TODO: Which providers have close method?
-    if (provider.close || provider == null) {
+    if (provider.close) {
         await provider.close()
 
         // If the cached provider is not cleared,

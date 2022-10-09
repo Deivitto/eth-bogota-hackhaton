@@ -11,13 +11,13 @@
     // }
 </script>
 
-<div class="sc-pradxg-2 laabeG s-ZsLpis4vdNUR">
+<div class="sc-pradxg-2 laabeG s-ZsLpis4vdNUR ml-1 mr-1">
     <div class="sc-pradxg-4 eKAXzW s-ZsLpis4vdNUR">
         <div
             class="sc-pradxg-7 bYIEGZ css-z9m35u s-ZsLpis4vdNUR"
             style="flex-shrink: 0; user-select: none; color:#fff"
         >
-            0 {currency}
+            {currency}
         </div>
         <span class="s-ZsLpis4vdNUR"
             ><button
